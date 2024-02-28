@@ -1,0 +1,51 @@
+﻿@model City
+
+@{
+    ViewData["Title"] = "تفاصيل المدينة ";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+<div class="row">						
+    <div class="col-xl-8">
+        <div class="card m-b-20">
+            <div class="card-header">
+                <h3 class="card-title"> تفاصيل عن @Model.NameAr</h3>
+            </div>
+            <div class="card-body mb-0">
+                    
+                <dl class="row">
+                    <dt class = "col-sm-4">
+                        @Html.DisplayNameFor(model => model.NameAr)
+                    </dt>
+                    <dd class = "col-sm-10">
+                        @Html.DisplayFor(model => model.NameAr)
+                    </dd>
+                    <dt class = "col-sm-4">
+                        @Html.DisplayNameFor(model => model.NameEn)
+                    </dt>
+                    <dd class = "col-sm-10">
+                        @Html.DisplayFor(model => model.NameEn)
+                    </dd>
+                    <dt class = "col-sm-4">
+                        @Html.DisplayNameFor(model => model.CountryEn)
+                    </dt>
+                    <dd class = "col-sm-10">
+                        @Html.DisplayFor(model => model.CountryEn)
+                    </dd>
+                    <dt class = "col-sm-4">
+                        @Html.DisplayNameFor(model => model.CountryAr)
+                    </dt>
+                    <dd class = "col-sm-10">
+                        @Html.DisplayFor(model => model.CountryAr)
+                    </dd>
+                 
+                </dl>
+            </div>
+        </div>
+    </div>
+</div>
+
+ <div style="margin-bottom: 4rem;text-align: end;">
+    <a asp-action="Edit" asp-route-id="@Model?.Id"class="btn btn-warning">تعديل</a> 
+    <a asp-action="Index"class="btn btn-secondary">العودة للقائمة</a>
+</div>
+

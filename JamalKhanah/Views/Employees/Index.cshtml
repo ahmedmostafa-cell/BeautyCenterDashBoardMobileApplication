@@ -1,0 +1,114 @@
+﻿@model IEnumerable<Employee>
+
+@{
+    ViewData["Title"] = "قائمة الموظفين ";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+    var error = (TempData["Error"]!=null)? TempData["Error"] : null ;  
+    var success = (TempData["Success"]!=null)? TempData["Success"] : null ;
+}
+<div class="row">
+    <div class="col-md-12 col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title" >كل الموظفين   </h3>
+                @if (error != null)
+                {
+                    <div style="text-align: center;" class="alert alert-danger" role="alert">
+                        @error
+                    </div>
+                }
+                @if (success != null)
+                {
+                    <div style="text-align: center;" class="alert alert-success" role="alert">
+                        @success
+                    </div>
+                }
+            </div>
+            <div class="table-responsive" style="padding: 1.5rem; overflow-x: inherit;">
+                <table class="table mb-0 table-borderless" id="table_id">
+                    <thead>
+                    <tr>
+                        <th>
+                            الصورة 
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.FullName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Email)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.PhoneNumber)
+                        </th>
+                        <th>
+                            اسم المركز
+                        </th>
+                        <th>
+                            التحكم
+                        </th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var item in Model) {
+                        <tr>
+                            <td>
+                                <img src="@item.ImgUrl" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FullName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Email)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PhoneNumber)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.User.FullName)
+                            </td>
+                            <td>
+                                <div class="item-action dropdown">
+                                    <a href="javascript:void(0)" data-bs-toggle="dropdown" class="icon"><i class="fe fe-more-vertical fs-20 text-dark"></i></a>
+                                    <div class="dropdown-menu dropdown-menu-end">
+
+                                        <a asp-action="Edit" asp-route-id="@item.Id"class="dropdown-item btn btn-warning">تعديل</a>
+                                        <a asp-action="Delete" asp-route-id="@item.Id" style="margin: 0.3rem" class="btn btn-danger dropdown-item" onclick="return confirm('هل أنت متأكد من حذف هذا الموظف ؟ ');">حذف </a>
+
+
+                                    </div>
+                                </div>
+
+
+
+                            </td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    
+    <script>
+         $(document).ready( function () {
+                $('#table_id').DataTable( {
+                     paging: true,
+                     ordering:  true,
+                     "pagingType": "simple_numbers",
+                     "lengthMenu": [ 5, 20, 75, 100 ] ,
+                     "oLanguage": {
+                                   "sSearch": "البحث"
+                                  }
+                } );
+        } );
+ 
+
+    </script>
+}
+

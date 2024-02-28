@@ -1,0 +1,130 @@
+﻿@model UpdateCenterModel 
+
+@{
+    ViewData["Title"] = "تعديل بيانات مقدم الخدمة ";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<div class="row">						
+    <div class="col-xl-8">
+        <div class="card m-b-20">
+            <div class="card-header">
+                <h3 class="card-title">تعديل بيانات مركز مقدم الخدمة   </h3>
+            </div>
+            <div class="card-body mb-0"> 
+                <form class="form-horizontal" asp-action="EditCenter" enctype="multipart/form-data" runat="server">
+                    <div asp-validation-summary="All" style="margin-bottom: 2rem; text-align: center;" class="text-danger"></div>
+                    
+                    <input type="hidden"asp-for="UserId" />
+     
+                    <div class="form-group ">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label class="form-label"   asp-for="FullName"></label>
+                            </div>
+                            <div class="col-md-9">
+                                <input asp-for="FullName" class="form-control" id="examplenameInputname3" placeholder="الاسم بالكامل">
+                                <span asp-validation-for="FullName" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group ">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label class="form-label"   asp-for="PhoneNumber"></label>
+                            </div>
+                            <div class="col-md-9">
+                                <input asp-for="PhoneNumber" class="form-control" id="examplenameInputname3" placeholder="رقم الهاتف">
+                                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                  
+                    
+                    <div class="form-group ">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label class="form-label"   asp-for="Email"></label>
+                            </div>
+                            <div class="col-md-9">
+                                <input asp-for="Email" class="form-control" id="examplenameInputname3" placeholder="الأميل">
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label asp-for="CityId" class="control-label"></label>
+                            </div>
+                            <div class="col-md-9">
+                                <select asp-for="CityId" class="form-control" asp-items="ViewBag.Cities">
+                                    <option value="">اختر المدينة</option>
+                                </select>
+                                <span asp-validation-for="CityId" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label asp-for="Description" class="control-label"></label>
+                        <textarea rows="5" asp-for="Description" id="editor1" class="form-control " > </textarea>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                    
+                    <div class="form-group ">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label class="form-label"   asp-for="TaxNumber"></label>
+                            </div>
+                            <div class="col-md-9">
+                                <input asp-for="TaxNumber" class="form-control" id="examplenameInputname3" placeholder="الاسم بالكامل">
+                                <span asp-validation-for="TaxNumber" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group ">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label class="form-label" id="inputEmail3" asp-for="ImgFile"></label>
+                            </div>
+                            <div class="col-md-9">
+                                <input type="file" asp-for="ImgFile" class="dropify" data-height="180" />
+                                <span asp-validation-for="ImgFile" class="text-danger"></span>
+                            </div>
+                             
+                        </div>
+                    </div>
+					
+                        	
+
+                    <div class="form-group mb-0 row justify-content-end">
+                        <div class="col-md-9 float-end">
+                            <input type="submit" value="تعديل " class="btn btn-primary waves-effect waves-light">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+		
+ <div style="margin-bottom: 4rem;text-align: end;">
+    <a href="javascript: history.go(-1)" class="btn btn-secondary">العودة للقائمة</a>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        tinymce.init({
+            selector: "textarea",
+             branding: false,
+            promotion: false,
+             statusbar: false
+        });
+    </script>
+}
+

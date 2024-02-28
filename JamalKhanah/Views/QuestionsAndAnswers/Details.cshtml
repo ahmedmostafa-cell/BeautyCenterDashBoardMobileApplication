@@ -1,0 +1,47 @@
+﻿@model QuestionsAndAnswers
+
+@{
+    ViewData["Title"] = "التفاصيل";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+<div class="row">						
+    <div class="col-xl-8">
+        <div class="card m-b-20">
+            <div class="card-header">
+                <h3 class="card-title">التفاصيل  </h3>
+            </div>
+            <div class="card-body mb-0">
+                    
+                <dl class="row">
+                    <dt class = "col-sm-2">
+                        @Html.DisplayNameFor(model => model.Question)
+                    </dt>
+                    <dd class = "col-sm-10">
+                        @Html.Raw(Model.Question)
+                    </dd>
+                    <dt class = "col-sm-2">
+                        @Html.DisplayNameFor(model => model.Answer)
+                    </dt>
+                    <dd class = "col-sm-10">
+                        @Html.Raw(Model.Answer)
+                    </dd>
+                    <dt class = "col-sm-2">
+                        @Html.DisplayNameFor(model => model.QuestionsAndAnswersSection)
+                    </dt>
+                    <dd class = "col-sm-10">
+                        @Html.DisplayFor(model => model.QuestionsAndAnswersSection.Section)
+                    </dd>
+        
+                 
+        
+       
+                </dl>
+            </div>
+        </div>
+    </div>
+</div>
+
+ <div style="margin-bottom: 4rem;text-align: end;">
+    <a asp-action="Edit" asp-route-id="@Model.Id"class="btn btn-warning">تعديل</a> 
+    <a asp-action="Index"class="btn btn-secondary">العودة للقائمة</a>
+</div>

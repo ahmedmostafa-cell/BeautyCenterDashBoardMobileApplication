@@ -1,0 +1,153 @@
+﻿@model Service
+
+@{
+    ViewData["Title"] = "التفاصيل";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+<div class="row">						
+    <div class="col-xl-8">
+        <div class="card m-b-20">
+            <div class="card-header">
+                <h3 class="card-title">التفاصيل  </h3>
+            </div>
+            <div class="card-body mb-0">
+                    
+                <dl class="row">
+                    <dt class = "col-sm-2">
+                        @Html.DisplayNameFor(model => model.Provider)
+                    </dt>
+                    <dd class = "col-sm-10">
+                        @Html.DisplayFor(model => model.Provider.FullName)
+                    </dd>
+                    <dt class = "col-sm-2">
+                        @Html.DisplayNameFor(model => model.ServiceType)
+                    </dt>
+                    <dd class = "col-sm-10">
+                        @if (Model.ServiceType == ServiceType.Center)
+                        {
+                            <span class="badge badge-success">مركز</span>
+                        }
+                        else
+                        {
+                            <span class="badge badge-danger"> عمل حر</span>
+                        }
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.MainSection)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.MainSection.TitleAr)
+                    </dd>
+
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.TitleAr)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.TitleAr)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.TitleEn)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.TitleEn)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Description)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.Raw(Model.Description)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Price)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Price)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Discount)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Discount)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.FinalPrice)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.FinalPrice)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.PriceUnit)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.PriceUnit)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.Duration)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Duration)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.EmployeesNumber)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.EmployeesNumber)
+                    </dd>
+                    <dt class = "col-sm-2">
+                        @Html.DisplayNameFor(model => model.IsShow)
+                    </dt>
+                    <dd class = "col-sm-10">
+                        @Html.DisplayFor(model => model.IsShow)
+                    </dd>
+                    <dt class = "col-sm-2">
+                        @Html.DisplayNameFor(model => model.IsAvailable)
+                    </dt>
+                    <dd class = "col-sm-10">
+                        @Html.DisplayFor(model => model.IsAvailable)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.InHome)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.InHome)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.InCenter)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.InCenter)
+                    </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.IsFeatured)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.IsFeatured)
+                    </dd>
+
+
+
+
+
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.ImgUrl)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @if (@Model.ImgUrl != null)
+                        {
+                            <img src="@Model.ImgUrl" class="avatar avatar-sm me-3 border-radius-lg" alt="License Photo"style="width: 24rem; height: 14rem;">
+                        }
+                        else
+                        {
+                            <p>لا توجد صورة </p>
+                        }
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+</div>
+
+ <div style="margin-bottom: 4rem;text-align: end;">
+    <a asp-action="Edit" asp-route-id="@Model.Id"class="btn btn-warning">تعديل</a> 
+    <a asp-action="Index"class="btn btn-secondary">العودة للقائمة</a>
+</div>

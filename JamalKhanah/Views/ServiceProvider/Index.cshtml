@@ -1,0 +1,191 @@
+﻿@model IEnumerable<ApplicationUser>
+
+@{
+    ViewData["Title"] = "قائمة بمقدمي الخدمات";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+    var error = TempData["Error"] ;  
+    var success = TempData["Success"] ;
+}
+<div class="row">
+    <div class="col-md-12 col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title" >مقدمي الخدمات  </h3>
+                @if (error != null)
+                {
+                    <div style="text-align: center;" class="alert alert-danger" role="alert">
+                        @error
+                    </div>
+                }
+                @if (success != null)
+                {
+                    <div style="text-align: center;" class="alert alert-success" role="alert">
+                        @success
+                    </div>
+                }
+            </div>
+            <div class="table-responsive" style="padding: 1.5rem; overflow-x: inherit;">
+                <table class="table mb-0 table-borderless" id="table_id">
+                    <thead>
+                    <tr>
+                        <th> الصورة </th>
+                        <th> الاسم بالكامل  </th>
+                        <th> رقم الهاتف  </th>
+                            <th> حالة الحساب </th>
+                        <th> نوع مقدم الخدمة </th>
+                        
+                        <th> هل تمت الموافقة عليه؟ </th>
+                        <th> التحكم </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var item in Model) {
+                        <tr>
+                            <td>
+                                <img src="@item.UserImgUrl" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
+                            </td>     
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FullName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PhoneNumber)
+                            </td>
+                            <td>
+                                    @if (item.Status)
+                                    {
+                                        <span class="badge badge-secondary">مفعل</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge badge-info">معلق</span>
+                                    }
+
+                             </td>
+                            <td>
+                                @if (item.UserType == UserType.Center)
+                                {
+                                            <span class="badge badge-secondary">مركز</span>
+                                }
+                                else
+                                {
+                                            <span class="badge badge-info">عمل حر</span>
+                                }
+                              
+                            </td>
+                            <td>
+                                @if (item.IsApproved)
+                                {
+                                            <span class="badge badge-success">موافق</span>
+                                }
+                                else
+                                 {
+                                             <span class="badge badge-danger">ينتظر الموافقة </span>
+                                 }
+                                  </td>
+                                   
+                            <td>
+                                
+                                
+                                <div class=" dropdown">
+                                    <a href="javascript:void(0)" data-bs-toggle="dropdown" class="icon"><i class="fe fe-more-vertical fs-20 text-dark"></i></a>
+                                    <div class="dropdown-menu dropdown-menu-end">
+                                            <a asp-action="Reject" asp-route-id="@item.Id" style="margin: 0.3rem" class="btn btn-danger dropdown-item" onclick="return confirm('هل أنت متأكد من مسح المستخدم؟ ');"> مسح المستخدم </a>
+                                        @if (item.UserType == UserType.Center)
+                                        {
+                                            <a asp-action="EditCenter" asp-route-id="@item.Id"class="btn btn-warning dropdown-item">تعديل</a>
+                                        }
+                                        else
+                                        {
+                                            <a asp-action="EditFreeAgent" asp-route-id="@item.Id"class="btn btn-warning dropdown-item">تعديل</a>
+                                        }
+
+                                        <a asp-action="Details" asp-route-id="@item.Id"class="btn btn-info dropdown-item">تفاصيل</a>
+
+                                        @if (@item.Status)
+                                        {
+                                            <a asp-action="Suspend" asp-route-id="@item.Id" style="margin: 0.3rem" class="btn btn-danger dropdown-item" onclick="return confirm('هل أنت متأكد من إيقاف هذا الحساب؟ ');">إيقاف الحساب </a>
+                                        }
+                                        else
+                                        {
+                                            <a asp-action="Activate" class="btn btn-success dropdown-item" style="margin: 0.3rem" asp-route-id="@item.Id"onclick="return confirm('هل أنت متأكد من تشغيل هذا الحساب ؟ ');">تشغيل الحساب </a>
+                                        }
+                                        @if (@item.IsApproved == false)
+                                        {
+                                            <a asp-action="Reject" asp-route-id="@item.Id" style="margin: 0.3rem" class="btn btn-danger dropdown-item" onclick="return confirm('هل أنت متأكد من إلغاء الموافقة على هذا المستخدم؟ ');"> رفض الحساب </a>
+                                            <a asp-action="Approve" class="btn btn-success dropdown-item" style="margin: 0.3rem" asp-route-id="@item.Id"onclick="return confirm('هل أنت متأكد من الموافقة على هذا المستخدم؟ ');">الموافقة </a>
+                                        }
+                                         
+                                        @switch (@item.IsApproved)
+                                        {
+                                            case true when item.IsFeatured :
+                                                <a asp-action="RemoveFeatured" asp-route-id="@item.Id" style="margin: 0.3rem" class="btn btn-danger dropdown-item" onclick="return confirm('هل أنت متأكد من إزالة هذا المستخدم من المميزين؟ ');">إزالة من المميزين </a>
+                                                break;
+                                            case true when item.IsFeatured == false:
+                                                <a asp-action="MakeFeatured" asp-route-id="@item.Id" style="margin: 0.3rem" class="btn btn-success dropdown-item" onclick="return confirm('هل أنت متأكد من إضافة هذا المستخدم إلى المميزين؟ ');">إضافة إلى المميزين </a>
+                                                break;
+                                        }
+                                        @switch (@item.IsApproved)
+                                        {
+                                            case true when item.ShowServices:
+                                                <a asp-action="HideServices" asp-route-id="@item.Id" style="margin: 0.3rem" class="btn btn-danger dropdown-item" onclick="return confirm('هل أنت متأكد من أخفاء الخدمات الخاصة به للعملاء ؟ ');">أخفاء الخدمات </a>
+                                                break;
+                                            case true when !item.ShowServices:
+                                                <a asp-action="ShowServices" asp-route-id="@item.Id" style="margin: 0.3rem" class="btn btn-success dropdown-item" onclick="return confirm('هل أنت متأكد من أظهار الخدمات الخاصة به للعملاء؟ ');">أظهار الخدمات </a>
+                                                break;
+                                        }
+                                        @if (item.IsApproved==true &&item.Status== true)
+                                            {
+                                                <a asp-action="Index" asp-controller="Prizes" asp-route-userId="@item.Id" style="margin: 0.3rem" class="btn btn-info dropdown-item" >قائمة الجوائز </a>
+                                                <a asp-action="Index" asp-controller="Experiences" asp-route-userId="@item.Id" style="margin: 0.3rem" class="btn btn-info dropdown-item" >قائمة الخبرات </a>
+                                                <a asp-action="Index" asp-controller="WorkHours" asp-route-userId="@item.Id" style="margin: 0.3rem" class="btn btn-info dropdown-item" >قائمة مواعيد العمل  </a>
+                                                <a asp-action="Index" asp-controller="Commissions" asp-route-userId="@item.Id" style="margin: 0.3rem" class="btn btn-info dropdown-item" >قائمة العمولات </a>
+                                                @if (item.UserType == UserType.Center)
+                                                {
+                                                    <a asp-action="Index" asp-controller="Employees" asp-route-userId="@item.Id" style="margin: 0.3rem" class="btn btn-info dropdown-item" >قائمة الموظفين </a>
+                                                    <a asp-action="Index" asp-controller="Addresses" asp-route-userId="@item.Id" style="margin: 0.3rem" class="btn btn-info dropdown-item" >قائمة العناويين </a>
+                                                    
+                                                }
+                                            }
+
+                                    				
+                                     
+                                    </div>
+                                </div>
+                                
+                                
+
+
+                               
+
+
+                            </td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    
+    <script>
+         $(document).ready( function () {
+                $('#table_id').DataTable( {
+                     paging: true,
+                     ordering:  true,
+                     "pagingType": "simple_numbers",
+                     "lengthMenu": [ 5, 20, 75, 100 ] ,
+                     "oLanguage": {
+                                   "sSearch": "البحث"
+                                  }
+                } );
+        } );
+ 
+
+    </script>
+}
+

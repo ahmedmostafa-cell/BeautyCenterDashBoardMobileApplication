@@ -1,0 +1,113 @@
+﻿@model IEnumerable<CommissionModelView>
+
+@{
+    ViewData["Title"] = "قائمة يعمولات مقدمي الخدمة";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+    var error = TempData["Error"] ;  
+    var success = TempData["Success"] ;
+}
+<div class="row">
+    <div class="col-md-12 col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title" >عمولات مقدمي الخدمات   </h3>
+                @if (error != null)
+                {
+                    <div style="text-align: center;" class="alert alert-danger" role="alert">
+                        @error
+                    </div>
+                }
+                @if (success != null)
+                {
+                    <div style="text-align: center;" class="alert alert-success" role="alert">
+                        @success
+                    </div>
+                }
+            </div>
+            <div class="table-responsive" style="padding: 1.5rem; overflow-x: inherit;">
+                <table class="table mb-0 table-borderless" id="table_id">
+                    <thead>
+                    <tr>
+                        <th> صورة مقدم الخدمة  </th>
+                        <th> اسم مقدم الخدمة  </th>
+                        <th> مجموع الطلبات  </th>
+                        <th> مجموع تكلفة الطلبات  </th>
+                        <th> مجموع العمولات </th>
+                        <th> المبلغ المدفوع </th>
+                        <th> المبلغ المتبقي </th>
+                        <th> التحكم </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var item in Model) {
+                        <tr>
+                            <td>
+                                <img src="@item.Photo" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
+                            </td>     
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TotalOrder)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TotalOrderAmount)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TotalCommission)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TotalPaid)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TotalRemaining)
+                            </td>
+                                   
+                            <td>
+                                
+                                
+                                <div class=" dropdown">
+                                    <a href="javascript:void(0)" data-bs-toggle="dropdown" class="icon"><i class="fe fe-more-vertical fs-20 text-dark"></i></a>
+                                    <div class="dropdown-menu dropdown-menu-end">
+                                      
+                                        <a asp-action="Details" asp-controller="ServiceProvider" asp-route-id="@item.Id"class="btn btn-info dropdown-item">تفاصيل</a>
+                                    </div>
+                                </div>
+                                
+                                
+
+
+                               
+
+
+                            </td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    
+    <script>
+         $(document).ready( function () {
+                $('#table_id').DataTable( {
+                     paging: true,
+                     ordering:  true,
+                     "pagingType": "simple_numbers",
+                     "lengthMenu": [ 5, 20, 75, 100 ] ,
+                     "oLanguage": {
+                                   "sSearch": "البحث"
+                                  }
+                } );
+        } );
+ 
+
+    </script>
+}
+

@@ -1,0 +1,104 @@
+﻿@model IEnumerable<Complaint>
+
+@{
+    ViewData["Title"] = "كل الشكاوي  ";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+    var error = TempData["Error"] ;  
+    var success = TempData["Success"] ;
+}
+
+<div class="row">
+    <div class="col-md-12 col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title" >كل الشكاوي </h3>
+                @if (error != null)
+                {
+                    <div style="text-align: center;" class="alert alert-danger" role="alert">
+                        @error
+                    </div>
+                }
+                @if (success != null)
+                {
+                    <div style="text-align: center;" class="alert alert-success" role="alert">
+                        @success
+                    </div>
+                }
+            </div>
+
+            <div class="table-responsive" style="padding:1.5rem">
+                <table class="table mb-0 table-borderless" id="table_id">
+                    <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Title)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CreatedAt)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.User)
+                        </th>
+                        <th>
+                            رقم هاتف العميل 
+                        </th>
+                        <th>
+                           الاميل الخاص بالعميل
+                        </th>
+                        
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var item in Model) {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Title)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CreatedAt)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.User.FullName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.User.PhoneNumber)
+                            </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.User.Email)
+                                </td>
+                            <td>
+                                <a href = "mailto: @item.User.Email"class="btn btn-secondary">الرد علي الشكوي</a>
+                                <a asp-action="Details" asp-route-id="@item.Id"class="btn btn-info">تفاصيل</a>
+                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger" onclick="return confirm('هل أنت متأكد من حذف هذه الشكوي؟ ');">حذف الشكوي </a>
+                                
+                            </td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    
+    <script>
+         $(document).ready( function () {
+                $('#table_id').DataTable( {
+                     paging: true,
+                     ordering:  true,
+                     "pagingType": "simple_numbers",
+                     "lengthMenu": [ 5, 20, 75, 100 ] ,
+                     "oLanguage": {
+                                   "sSearch": "البحث"
+                                  }
+                } );
+        } );
+ 
+
+    </script>
+}

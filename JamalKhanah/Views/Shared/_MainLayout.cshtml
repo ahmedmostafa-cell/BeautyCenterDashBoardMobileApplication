@@ -1,0 +1,485 @@
+﻿@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@{
+	var currentController = ViewContext.RouteData.Values["Controller"]?.ToString();
+	var currentAction = ViewContext.RouteData.Values["Action"]?.ToString();
+	var userData =  UserManager.Users.Where(a=> a.Id ==UserManager.GetUserId(User)).FirstOrDefault();
+	
+}
+
+<!doctype html>
+<html lang="ar" dir="rtl">
+	<head>
+		<!-- Meta data -->
+		<meta charset="UTF-8">
+		<meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta content="Eudica - Online Education & Learning Courses HTML CSS Responsive Template" name="description">
+		<meta content="Spruko Technologies Private Limited" name="author">
+		<meta name="keywords" content="html rtl, html dir rtl, rtl website template, bootstrap 5 rtl template, rtl bootstrap template, admin panel template rtl, admin panel rtl, html5 rtl, academy training course css template, classes online training website templates, courses training html5 template design, education training rwd simple template, educational learning management jquery html, elearning bootstrap education template, professional training center bootstrap html, institute coaching mobile responsive template, marketplace html template premium, learning management system jquery html, clean online course teaching directory template, online learning course management system, online course website template css html, premium lms training web template, training course responsive website"/>
+
+		<!-- Favicon -->
+		<link rel="icon" href="~/Img/FullLogo_NoBuffer.jpg" type="image/x-icon"/>
+		<link rel="shortcut icon" type="image/x-icon" href="~/assets/images/brand/favicon.ico" />
+
+		<!-- Title -->
+		<title>@*Infinity*@ @ViewData["Title"]</title>
+		<!-- Bootstrap css -->
+		<link id="style" href="~/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
+		<!-- Dashboard Css -->
+		<link href="~/assets/css/style.css" rel="stylesheet" />
+		<link href="~/assets/css/dark-style.css" rel="stylesheet" />
+		<link href="~/assets/css/transparent-style.css" rel="stylesheet" />
+		<link href="~/assets/css/admin-custom.css" rel="stylesheet" />
+
+		<!---Font icons-->
+		<link href="~/assets/css/icons.css" rel="stylesheet"/>
+
+		<!-- Color Skin css -->
+		<link id="theme" rel="stylesheet" type="text/css" media="all" href="~/assets/color-skins/color.css" />
+
+        <!-- datatable css -->
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+        <link rel="stylesheet" href="https://cdn.datatables.net/select/1.3.0/css/select.dataTables.min.css"/>
+       
+        <!-- Textarea -->
+        <script src="~/assets/tinymce/tinymce.min.js"></script>
+
+    </head>
+
+	<body class="app sidebar-mini rtl" >
+		<style>
+			tr, td,th {
+				text-align: center !important;
+			}
+		   .dataTables_paginate .paginate_button.current {
+			background: #ec296b !IMPORTANT;
+			}
+			.dataTables_wrapper .dataTables_paginate .paginate_button {
+				font-size: 1rem;
+				border: 2px solid #fff !IMPORTANT;
+			}
+			.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+				background: #fff;
+				color: var(--primary-bg-color)!IMPORTANT;
+				border: 2px solid var(--primary-bg-color)!IMPORTANT;
+				font-size: 1rem;
+    
+    
+			}
+			.dataTables_paginate {
+				font-size:1rem;
+				margin-top: 3rem !important;
+			}
+			.dataTables_wrapper .dataTables_info {
+				font-size:1rem;
+				margin-top: 2.8rem !important;
+			}
+			.dataTables_wrapper .dataTables_length {
+				margin-bottom: 2rem;
+				margin-top: 1rem;
+			}
+			.rtl div.dataTables_wrapper div.dataTables_filter {
+				margin-top: 1rem;
+			}
+            .rtl table.dataTable thead .sorting:before, .rtl table.dataTable thead .sorting_asc:before, .rtl table.dataTable thead .sorting_desc:before, .rtl table.dataTable thead .sorting_asc_disabled:before, .rtl table.dataTable thead .sorting_desc_disabled:before {
+                left: 6em;
+                right: inherit;
+                display: none;
+            }
+            .rtl table.dataTable thead .sorting:after, .rtl table.dataTable thead .sorting_asc:after, .rtl table.dataTable thead .sorting_desc:after, .rtl table.dataTable thead .sorting_asc_disabled:after, .rtl table.dataTable thead .sorting_desc_disabled:after {
+                left: 6em;
+                right: inherit;
+                display: none;
+            }
+
+            .notifyjs-happyblue-base {
+                white-space: nowrap;
+                background-color: lightblue;
+                padding: 5px;
+            }
+		</style>
+
+
+		<!--Loader-->
+		<div id="global-loader">
+			<img src="~/assets/images/loader.svg" class="loader-img" alt="">
+		</div>
+		<!--Loader-->
+        <!--Page-->
+        	<div class="page">
+                <div class="page-main h-100">
+
+				<!--App-Header-->
+				<div class="app-header1 header d-flex">
+					<div class="container-fluid">
+						<div class="responsive-logo d-flex">
+							<a class="header-brand" href="index.html">
+								<img src="Group 1.svg" class="header-brand-img light-logo" alt="Lmslist logo">
+								<img src="Group 1.svg" class="header-brand-img dark-logo" alt="Lmslist logo">
+							</a>
+							<a aria-label="Hide Sidebar" class="app-sidebar__toggle" data-bs-toggle="sidebar" href="javascript:void(0);"></a>
+						
+							<div class="d-flex header-right">
+								<button class="navbar-toggler navresponsive-toggler d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent-4" aria-controls="navbarSupportedContent-4" aria-expanded="false" aria-label="Toggle navigation">
+									<i class="fe fe-more-vertical header-icons navbar-toggler-icon"></i>
+								</button>
+								<div class="p-0 mb-0 navbar navbar-expand-lg  responsive-navbar navbar-dark">
+									<div class="navbar-collapse collapse" id="navbarSupportedContent-4">
+										<div class="d-flex">
+											<div class="header-navicon">
+												<a href="javascript:void(0);" data-bs-toggle="search" class="nav-link icon d-lg-none navsearch-icon">
+													<i class="fe fe-search"></i>
+												</a>
+											</div>
+											<div class="dropdown d-flex">
+												<a class="nav-link icon theme-layout layout-setting">
+													<span class="dark-layout mt-0"><i class="fe fe-moon"></i></span>
+													<span class="light-layout mt-0"><i class="fe fe-sun"></i></span>
+												</a>
+											</div>
+											<div class="dropdown d-flex" >
+												<a  class="nav-link icon full-screen-link">
+													<i class="fe fe-maximize-2"  id="fullscreen-button"></i>
+												</a>
+											</div>
+										
+											<div class="dropdown ">
+												<a href="javascript:void(0);" class="nav-link leading-none user-img" data-bs-toggle="dropdown">
+                                                    <img src="@userData.UserImgUrl" alt="" class="avatar avatar-md brround">
+												</a>
+												<div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow ">
+												<a class="dropdown-item" asp-controller="Admin" asp-action="Edit" asp-route-id="@UserManager.GetUserId(User)">
+														<i class="dropdown-icon icon icon-user"></i> My Profile
+													</a>
+													
+													<a class="dropdown-item"  asp-action="Logout" asp-controller="Account">
+														<i class="dropdown-icon icon icon-power"></i> Log out
+													</a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--/App-Header-->
+
+				<!-- Sidebar menu-->
+				<div class="app-sidebar__overlay" data-bs-toggle="sidebar"></div>
+				<aside class="app-sidebar doc-sidebar">
+					<div class="main-sidebar-header">
+                        <a class="header-brand" asp-controller="Dashboard" asp-action="Index" >
+                            <img src="~/Img/FullLogo_NoBuffer.jpg" style="width: 3rem;" class="header-brand-img desktop-logo" alt="Lmslist logo">
+                            <img src="~/Img/FullLogo_NoBuffer.jpg" style="width: 3rem;" class="header-brand-img desktop-dark" alt="Lmslist logo">
+							<img src="~/Img/FullLogo_NoBuffer.jpg" class="header-brand-img mobile-logo" alt="Lmslist logo">
+							<img src="~/Img/FullLogo_NoBuffer.jpg" class="header-brand-img mobile-logo-dark" alt="Lmslist logo">
+						</a>
+					</div>
+					<div class="app-sidebar__user clearfix">
+						<div class="dropdown user-pro-body">
+							<div>
+                                <img src="@userData.UserImgUrl" alt="" class="avatar avatar-lg brround">
+							<a asp-controller="Admin" asp-action="Edit" asp-route-id="@UserManager.GetUserId(User)" class="profile-img">
+									<span class="fa fa-pencil" aria-hidden="true"></span>
+								</a>
+							</div>
+							<div class="user-info">
+								<h2>@userData.FullName</h2>
+							</div>
+						</div>
+					</div>
+                    <ul class="side-menu">
+                        
+                        <li class="slide">
+                            <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);"><i class="side-menu__icon fa fa-user-circle-o"></i><span class="side-menu__label">المسؤولين </span><i class="angle fa fa-angle-right"></i></a>
+                            <ul class="slide-menu">
+                                <li><a class="slide-item" asp-action="Index" asp-controller="Admin">قائمة بكل المسؤولين   </a></li>
+                                <li><a class="slide-item" asp-action="Create" asp-controller="Admin">أنشاء حساب لمسؤول جديد  </a></li>
+                            </ul>
+                        </li>
+						 <li class="slide">
+                            <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);"><i class="side-menu__icon fa fa-user-circle-o"></i><span class="side-menu__label">المستخدمين </span><i class="angle fa fa-angle-right"></i></a>
+                            <ul class="slide-menu">
+							<li><a class="slide-item" asp-action="IndexUsers" asp-controller="Admin">قائمة بكل المستخدمين   </a></li>
+                               <li><a class="slide-item" asp-action="IndexUsersDeleted" asp-controller="Admin">قائمة بالمستخدمين الراغبين  حذف الحساب   </a></li>
+                            </ul>
+                        </li>
+                        <li class="slide">
+                            <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);"><i class="side-menu__icon fa fa-user-circle-o"></i><span class="side-menu__label">المدن  </span><i class="angle fa fa-angle-right"></i></a>
+                            <ul class="slide-menu">
+                                <li><a class="slide-item" asp-action="Index" asp-controller="Cities">قائمة بكل المدن   </a></li>
+                                <li><a class="slide-item" asp-action="Create" asp-controller="Cities">أنشاءمدينة جديد  </a></li>
+                            </ul>
+                        </li>
+                        
+                        <li class="slide">
+                            <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);"><i class="side-menu__icon fa fa-users"></i><span class="side-menu__label">مقدمي الخدمات  </span><i class="angle fa fa-angle-right"></i></a>
+                            <ul class="slide-menu">
+                                <li><a class="slide-item" asp-action="Index" asp-controller="ServiceProvider"> قائمة بكل مقدمي الخدمات  </a></li>
+                                <li><a class="slide-item" asp-action="Centers" asp-controller="ServiceProvider"> قائمة بكل المراكز </a></li>
+                                <li><a class="slide-item" asp-action="FreeAgents" asp-controller="ServiceProvider"> قائمة بكل الفريلانسر </a></li>
+                                <li><a class="slide-item" asp-action="WaitForApprove" asp-controller="ServiceProvider">  مقدمي خدمة في أنتظار الموافقة </a></li>
+							<li><a class="slide-item" asp-action="IndexServiceProviderDeleted" asp-controller="Admin">قائمة بمقدمي الخدمات الراغبين  حذف الحساب   </a></li>
+                            </ul>
+                        </li>
+                        
+                        <li class="slide">
+                            <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);"><i class="side-menu__icon fa fa-users"></i><span class="side-menu__label"> أضافة بيانات للمستخدمين </span><i class="angle fa fa-angle-right"></i></a>
+                            <ul class="slide-menu">
+                                <li><a class="slide-item" asp-action="Create" asp-controller="Addresses"> أضافة عنوان   </a></li>
+                                <li><a class="slide-item" asp-action="Create" asp-controller="Employees"> أضافة موظف للمركز </a></li>
+                                <li><a class="slide-item" asp-action="Create" asp-controller="Experiences"> أضافة خبرات جديدة </a></li>
+                                <li><a class="slide-item" asp-action="Create" asp-controller="Prizes">  أضافة جوائز جديدة </a></li>
+                                <li><a class="slide-item" asp-action="Create" asp-controller="WorkHours"> أضافة وقت للعمل   </a></li>
+                            </ul>
+                        </li>
+                        <li class="slide">
+                            <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);"><i class="side-menu__icon fa fa-server"></i><span class="side-menu__label">الفئات </span><i class="angle fa fa-angle-right"></i></a>
+                            <ul class="slide-menu">
+                                <li><a class="slide-item" asp-action="Index" asp-controller="MainSections"> قائمة بكل الفئات</a></li>
+                                <li><a class="slide-item" asp-action="Create" asp-controller="MainSections"> أنشاء فئة جديدة</a></li>
+                            </ul>
+                        </li>
+                        <li class="slide">
+                            <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);"><i class="side-menu__icon fa fa-server"></i><span class="side-menu__label">الخدمات </span><i class="angle fa fa-angle-right"></i></a>
+                            <ul class="slide-menu">
+                                <li><a class="slide-item" asp-action="Index" asp-controller="Services"> قائمة بكل الخدمات</a></li>
+                                <li><a class="slide-item" asp-action="Create" asp-controller="Services"> أنشاء خدمة جديدة</a></li>
+                            </ul>
+                        </li>
+                        <li class="slide">
+                            <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);"><i class="side-menu__icon fa fa-server"></i><span class="side-menu__label">الحجوزات </span><i class="angle fa fa-angle-right"></i></a>
+                            <ul class="slide-menu">
+                                <li><a class="slide-item" asp-action="Index" asp-controller="Orders"> قائمة بكل الحجوزات</a></li>
+                            </ul>
+                        </li>
+
+					<li class="slide">
+						<a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);"><i class="side-menu__icon fa fa-credit-card"></i><span class="side-menu__label">عمليات الدفع </span><i class="angle fa fa-angle-right"></i></a>
+						<ul class="slide-menu">
+							<li><a class="slide-item" asp-action="Index" asp-controller="Payment"> قائمة بسجل عمليات الدفع</a></li>
+						</ul>
+					</li>
+                        <li class="slide">
+                            <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);"><i class="side-menu__icon fa fa-server"></i><span class="side-menu__label">العمولات </span><i class="angle fa fa-angle-right"></i></a>
+                            <ul class="slide-menu">
+                                <li><a class="slide-item" asp-action="ServiceProviderCommission" asp-controller="Commissions"> مقدمي الخدمة والعمولات </a></li>
+                                <li><a class="slide-item" asp-action="Index" asp-controller="Commissions"> قائمة بكل العمولات</a></li>
+                                <li><a class="slide-item" asp-action="Create" asp-controller="Commissions"> أنشاء عمولة جديدة</a></li>
+                            </ul>
+                        </li>
+                        <li class="slide">
+                            <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);"><i class="side-menu__icon fa fa-server"></i><span class="side-menu__label">الكوبونات </span><i class="angle fa fa-angle-right"></i></a>
+                            <ul class="slide-menu">
+                                <li><a class="slide-item" asp-action="Index" asp-controller="Coupons"> قائمة بكل الكوبونات</a></li>
+                                <li><a class="slide-item" asp-action="Create" asp-controller="Coupons"> أنشاء كوبون جديدة</a></li>
+                            </ul>
+                        </li>
+
+					<li class="slide">
+                            <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);"><i class="side-menu__icon fa fa-server"></i><span class="side-menu__label">شرائح الصور </span><i class="angle fa fa-angle-right"></i></a>
+                            <ul class="slide-menu">
+                                <li><a class="slide-item" asp-action="Index" asp-controller="SlidePhotos"> قائمة بكل شرائح الصور</a></li>
+                                <li><a class="slide-item" asp-action="Create" asp-controller="SlidePhotos"> أنشاء شريحة جديدة</a></li>
+                            </ul>
+                        </li>
+                      
+                        
+                        <li class="slide">
+						<a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);"><i class="side-menu__icon fa fa-phone"></i><span class="side-menu__label">بيانات التواصل و<br /> سياسة الخصوصية <br />و شروط الاحكام  </span><i class="angle fa fa-angle-right"></i></a>
+                            <ul class="slide-menu">
+                                <li><a class="slide-item" asp-action="Index" asp-controller="ContactUs"> بيانات التواصل و<br /> سياسة الخصوصية و شروط الاحكام </a></li>
+							<li><a class="slide-item" asp-action="Create" asp-controller="ContactUs"> انشاء بيانات التواصل و<br />   سياسة الخصوصية<br /> و شروط الاحكام </a></li>
+                            </ul>
+                        </li>
+                        
+                        <li class="slide">
+                            <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);"><i class="side-menu__icon fa fa-bell"></i><span class="side-menu__label">الاشعارات  </span><i class="angle fa fa-angle-right"></i></a>
+                            <ul class="slide-menu">
+                                <li><a class="slide-item" asp-action="Index" asp-controller="Notifications">كل الاشعارات </a></li>
+                                <li><a class="slide-item" asp-action="Create" asp-controller="Notifications">أنشاء أشعار جديد </a></li>
+                            </ul>
+                        </li>
+                        <li class="slide">
+                            <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);"><i class="side-menu__icon fa fa-bell"></i><span class="side-menu__label">الشكاوي </span><i class="angle fa fa-angle-right"></i></a>
+                            <ul class="slide-menu">
+                                <li><a class="slide-item" asp-action="Index" asp-controller="Complaints">كل الشكاوي </a></li>
+                            </ul>
+                        </li>
+                        <li class="slide">
+                            <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);"><i class="side-menu__icon fa fa-bell"></i><span class="side-menu__label">أقسام الأسئلة والاجوبة </span><i class="angle fa fa-angle-right"></i></a>
+                            <ul class="slide-menu">
+                                <li><a class="slide-item" asp-action="Index" asp-controller="QuestionsAndAnswersSections">كل الافسام </a></li>
+                                <li><a class="slide-item" asp-action="Create" asp-controller="QuestionsAndAnswersSections">أنشاء قسم جديد </a></li>
+                            </ul>
+                        </li>
+                        <li class="slide">
+                            <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);"><i class="side-menu__icon fa fa-bell"></i><span class="side-menu__label"> الأسئلة والاجوبة </span><i class="angle fa fa-angle-right"></i></a>
+                            <ul class="slide-menu">
+                                <li><a class="slide-item" asp-action="Index" asp-controller="QuestionsAndAnswers">كل الأسئلة والاجوبة </a></li>
+                                <li><a class="slide-item" asp-action="Create" asp-controller="QuestionsAndAnswers">أنشاء سؤال جديد </a></li>
+                            </ul>
+                        </li>
+                        
+                    @*   
+                        <li class="slide">
+                            <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);"><i class="side-menu__icon fa fa-envelope-o"></i><span class="side-menu__label">الرسائل </span><i class="angle fa fa-angle-right"></i></a>
+                            <ul class="slide-menu">
+                                <li><a class="slide-item" asp-action="Index" asp-controller="ClientMessages">قائمة الرسائل </a></li>
+
+                            </ul>
+                        </li>
+                     
+                        <li class="slide">
+                            <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);"><i class="side-menu__icon fa fa-tasks"></i><span class="side-menu__label">سابقات الاعمال </span><i class="angle fa fa-angle-right"></i></a>
+                            <ul class="slide-menu">
+                                <li><a class="slide-item" asp-action="Index" asp-controller="PreviousWorks">قائمة بكل الاعمال </a></li>
+                                <li><a class="slide-item" asp-action="Create" asp-controller="PreviousWorks">أنشاء سابقة أعمال جديده </a></li>
+                            </ul>
+                        </li>
+                        <li class="slide">
+                            <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);"><i class="side-menu__icon fa fa-picture-o"></i><span class="side-menu__label">صور الاعمال  </span><i class="angle fa fa-angle-right"></i></a>
+                            <ul class="slide-menu">
+                                <li><a class="slide-item" asp-action="Index" asp-controller="PreviousWorkPhotos" asp-route-id="0">كل الصور </a></li>
+                                <li><a class="slide-item" asp-action="Create" asp-controller="PreviousWorkPhotos" >أنشاء صورة لسابقة أعمال </a></li>
+                            </ul>
+                        </li>
+                        <li class="slide">
+                            <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);"><i class="side-menu__icon fa fa-quora"></i><span class="side-menu__label">أقسام الخدمات  </span><i class="angle fa fa-angle-right"></i></a>
+                            <ul class="slide-menu">
+                                <li><a class="slide-item" asp-action="Index" asp-controller="ServicesSections"> كل الاقسام </a></li>
+                                <li><a class="slide-item" asp-action="Create" asp-controller="ServicesSections">أنشاء قسم جديد</a></li>
+                            </ul>
+                        </li>
+                        <li class="slide">
+                            <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0);"><i class="side-menu__icon fa fa-address-card-o"></i><span class="side-menu__label">من نحن  </span><i class="angle fa fa-angle-right"></i></a>
+                            <ul class="slide-menu">
+                                <li><a class="slide-item" asp-action="Index" asp-controller="DataAboutUs">البيانات </a></li>
+                                <li><a class="slide-item" asp-action="Edit" asp-controller="DataAboutUs">تعديل البيانات </a></li>
+                            </ul>
+                        </li>*@
+                        
+                       
+
+                    </ul>
+			  </aside>
+				    <!-- /Sidebar menu-->
+				 	<div class="app-content  my-3 my-md-5">
+						<div class="side-app">
+
+								<!--Page-Header-->
+								<div class="page-header">
+									<h4 class="page-title">لوحة التحكم </h4>
+									<ol class="breadcrumb">
+										<li class="breadcrumb-item active" aria-current="page">@currentController / @currentAction </li>
+									   <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Dashboard">Home</a></li>
+									</ol>
+								</div>
+								 @RenderBody()
+						 </div>
+					</div>
+			 </div>
+		<!--Footer-->
+			@*<footer class="footer">
+				<div class="container">
+					<div class="row align-items-center flex-row-reverse">
+						<div class="col-lg-12 col-sm-12 mt-3 mt-lg-0 text-center">
+                            Copyright © 2022 - All Right Reserved By <i class="fa fa-heart text-danger"></i> <a href="https://www.lightbulb-tech.com/">LightBulb-Tech</a>
+						</div>
+					</div>
+				</div>
+			</footer>*@
+			<!--/Footer-->
+		</div>
+
+	
+
+		<!-- Back to top -->
+		<a href="#top" id="back-to-top" ><i class="fa fa-long-arrow-up"></i></a>
+
+		<!-- JQuery js-->
+		<script src="~/assets/js/jquery.min.js"></script>
+
+		<!-- Bootstrap js -->
+		<script src="~/assets/plugins/bootstrap/js/popper.min.js"></script>
+		<script src="~/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+
+		<!--JQuery Sparkline Js-->
+		<script src="~/assets/js/jquery.sparkline.min.js"></script>
+
+		<!-- Circle Progress Js-->
+		<script src="~/assets/js/circle-progress.min.js"></script>
+
+		<!-- Star Rating-2 Js-->
+		<script src="~/assets/plugins/ratings-2/jquery.star-rating.js"></script>
+		<script src="~/assets/plugins/ratings-2/star-rating.js"></script>
+
+		<!-- Sidemenu Js-->
+		<script src="~/assets/plugins/sidemenu/sidemenu.js"></script>
+
+		<!-- pscroll bar Js-->
+		<script src="~/assets/plugins/pscrollbar/pscrollbar.js"></script>
+		<script src="~/assets/plugins/pscrollbar/pscroll.js"></script>
+
+		<!-- CHARTJS CHART -->
+		<script src="~/assets/plugins/chart/Chart.bundle.js"></script>
+		<script src="~/assets/plugins/chart/utils.js"></script>
+
+		<!-- Index Scripts -->
+		<script src="~/assets/plugins/echarts/echarts.js"></script>
+		<script src="~/assets/js/index4.js"></script>
+
+		<!-- Theme Color js-->
+		<script src="~/assets/js/themecolors.js"></script>
+        
+
+		<!--Select2 js -->
+		<script src="~/assets/plugins/select2/select2.full.min.js"></script>
+
+		<!-- Timepicker js -->
+		<script src="~/assets/plugins/time-picker/jquery.timepicker.js"></script>
+		<script src="~/assets/plugins/time-picker/toggles.min.js"></script>
+
+		<!-- Datepicker js -->
+		<script src="~/assets/plugins/date-picker/spectrum.js"></script>
+		<script src="~/assets/plugins/date-picker/jquery-ui.js"></script>
+		<script src="~/assets/plugins/input-mask/jquery.maskedinput.js"></script>
+
+		<!-- Inline js -->
+		<script src="~/assets/js/select2.js"></script>
+		<script src="~/assets/js/formelements.js"></script>
+
+		<!-- file uploads js -->
+        <script src="~/assets/plugins/fileuploads/js/fileupload.js"></script>
+
+		<!--InputMask Js-->
+		<script src="~/assets/plugins/jquery-inputmask/jquery.inputmask.bundle.min.js"></script>
+
+		<!-- pscroll bar Js-->
+		<script src="~/assets/plugins/pscrollbar/pscrollbar.js"></script>
+		<script src="~/assets/plugins/pscrollbar/pscroll.js"></script>
+        
+		<!--Counters -->
+		<script src="~/assets/plugins/counters/counterup.min.js"></script>
+		<script src="~/assets/plugins/counters/waypoints.min.js"></script>
+        
+		<!-- Custom Js-->
+		<script src="~/assets/js/admin-custom.js"></script>
+		<script src="~/assets/js/custom-switcher.js"></script>
+  
+        <!-- Datatable -->
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/select/1.4.0/js/dataTables.select.min.js"></script>
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
+    
+    <!--  Render Section Scripts  -->
+		@await RenderSectionAsync("Scripts", required: false)
+
+        
+	</body>
+</html>

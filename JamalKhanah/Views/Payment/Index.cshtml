@@ -1,0 +1,101 @@
+﻿@using JamalKhanah.Core.Entity.PaymentData;
+@using System.Globalization;
+@model IEnumerable<PaymentHistory>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+
+<div class="row">
+    <div class="col-md-12 col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">سجل عمليات الدفع</h3>
+            </div>
+
+            <div class="table-responsive" style="padding:1.5rem">
+                <table class="table mb-0 table-borderless" id="table_id">
+                    <thead>
+                        <tr>
+                            <th>
+                                رقم العملية
+                            </th>
+                            <th>
+                                تاريخ العملية
+                            </th>
+                            <th>
+                                الحالة
+                            </th>
+                            <th>
+                                المبلغ المدفوع
+                            </th>
+                            <th>
+                                طلب إسترجاع
+                            </th>
+                            <th>
+                                رقم الطلب
+                            </th>
+                            <th>اسم العميل </th>
+                            <th>التفاصيل</th> 
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TransactionNumber)
+                                </td>
+                                <td>
+                                    @item.Created_at?.ToString("dd MMMM yyyy hh:mm tt", new CultureInfo("ar-EG"))
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Status)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Amount_format)
+                                </td>
+                                <td>
+                                    @(item.Refunded_at.HasValue ? "نعم" : "لا")
+                                </td>
+                                <td>
+                                    @if (item.Order != null)
+                                    {
+                                        @item.Order.Id
+                                    }
+                                </td>
+                                <td>
+                                    @if (!string.IsNullOrWhiteSpace(item.Order?.User?.FullName))
+                                    {
+                                        @Html.DisplayFor(modelItem => item.Order.User.FullName)
+                                    }
+                                </td>
+                                <td>
+                                    <a asp-action="RefundPayment" asp-route-id="@item.Id" onclick="return confirm('هل أنت متأكد من إرجاع المبلغ المدفوع؟ هذه العملية غير قابله للعودة')" class="btn btn-danger">إرجاع المبلغ المدفوع</a>
+                                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info">تفاصيل</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#table_id').DataTable({
+                paging: true,
+                ordering: true,
+                "pagingType": "simple_numbers",
+                "lengthMenu": [5, 20, 75, 100],
+                "oLanguage": {
+                    "sSearch": "البحث"
+                }
+            });
+        });
+    </script>
+}

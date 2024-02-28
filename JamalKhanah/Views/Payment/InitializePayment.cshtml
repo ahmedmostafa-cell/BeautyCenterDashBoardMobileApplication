@@ -1,0 +1,52 @@
+﻿@using JamalKhanah.Core.DTO.EntityDto;
+@model InitalPaymentObjectDto
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <!-- Meta data -->
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Title -->
+    <title>JamalKhanah</title>
+    <link rel="stylesheet" href="https://cdn.moyasar.com/mpf/1.7.3/moyasar.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            direction: rtl;
+            font-family: Cairo !important;
+        }
+
+        #mysr-cc-number {
+            direction: ltr;
+        }
+    </style>
+</head>
+<body>
+    <div class="mysr-form"></div>
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=fetch"></script>
+    <script src="https://cdn.moyasar.com/mpf/1.7.3/moyasar.js"></script>
+    <script>
+        Moyasar.init({
+            element: '.mysr-form',
+            amount: @Model.Amount * 100,
+            currency: '@Model.Currency',
+            description: '@Html.Raw(Model.OrderDescription)',
+            publishable_api_key: '@Model.APIKey',
+            callback_url: window.location.origin + '/payment/fetchpayment',
+            methods: ['creditcard'],
+            on_completed: window.location.origin + '/payment/savepayment',
+            metadata: {
+                'PaymentUrlIdentifier': '@Model.PaymentUrlIdentifier'
+            }
+        });
+    </script>
+</body>
+</html>

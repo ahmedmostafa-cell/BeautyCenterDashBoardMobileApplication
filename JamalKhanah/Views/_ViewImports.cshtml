@@ -1,0 +1,48 @@
+﻿@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@inject IHttpContextAccessor HttpContextAccessor	
+@using JamalKhanah.Core.Entity.ApplicationData
+@using Microsoft.AspNetCore.Http
+@using Newtonsoft.Json
+@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+
+@using JamalKhanah
+@using JamalKhanah.Core 
+@using JamalKhanah.Core.Entity
+@using JamalKhanah.Core.Entity.ProfileData
+@using JamalKhanah.Core.Entity.Other
+@using JamalKhanah.Core.Entity.SectionsData
+@using JamalKhanah.Core.Entity.OrderData
+@using JamalKhanah.Core.Entity.QuestionsAndAnswersData
+@using JamalKhanah.Core.Entity.CommissionsData
+@using JamalKhanah.Core.Entity.CouponData
+
+@using JamalKhanah.Core.Entity.ChatAndNotification
+
+
+@using JamalKhanah.Core.ModelView
+@using JamalKhanah.Core.ModelView.AuthViewModel
+@using JamalKhanah.Core.ModelView.AuthViewModel.ChangePasswordData
+@using JamalKhanah.Core.ModelView.AuthViewModel.LoginData
+@using JamalKhanah.Core.ModelView.AuthViewModel.RegisterData
+@using JamalKhanah.Core.ModelView.AuthViewModel.UpdateData
+
+
+@using JamalKhanah.Core.DTO;
+@using JamalKhanah.Core.DTO.Pagination;
+@using JamalKhanah.Core.DTO.NotificationModel ;
+
+
+@using JamalKhanah.Core.Helpers
+
+
+@using JamalKhanah.Core.ModelView.MV
+
+
+
+
+
+
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers

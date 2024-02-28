@@ -1,0 +1,61 @@
+﻿@model ContactUs
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h1>Create</h1>
+
+<h4>ContactUs</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="WhatsAppNumber" class="control-label"></label>
+                <input asp-for="WhatsAppNumber" class="form-control" />
+                <span asp-validation-for="WhatsAppNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Link" class="control-label"></label>
+                <input asp-for="Link" class="form-control" />
+                <span asp-validation-for="Link" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FaceBookLink" class="control-label"></label>
+                <input asp-for="FaceBookLink" class="form-control" />
+                <span asp-validation-for="FaceBookLink" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PhoneNumber" class="control-label"></label>
+                <input asp-for="PhoneNumber" class="form-control" />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TermsAndConditions" class="control-label"></label>
+                <input asp-for="TermsAndConditions" class="form-control" />
+                <span asp-validation-for="TermsAndConditions" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TermsAndConditionsAr" class="control-label"></label>
+                <input asp-for="TermsAndConditionsAr" class="form-control" />
+                <span asp-validation-for="TermsAndConditionsAr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

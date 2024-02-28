@@ -1,0 +1,78 @@
+﻿<!doctype html>
+<html lang="ar" dir="rtl">
+	<head>
+		<!-- Meta data -->
+		<meta charset="UTF-8">
+		<meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta content="Eudica - Online Education & Learning Courses HTML CSS Responsive Template" name="description">
+		<meta content="Spruko Technologies Private Limited" name="author">
+		<meta name="keywords" content="html rtl, html dir rtl, rtl website template, bootstrap 5 rtl template, rtl bootstrap template, admin panel template rtl, admin panel rtl, html5 rtl, academy training course css template, classes online training website templates, courses training html5 template design, education training rwd simple template, educational learning management jquery html, elearning bootstrap education template, professional training center bootstrap html, institute coaching mobile responsive template, marketplace html template premium, learning management system jquery html, clean online course teaching directory template, online learning course management system, online course website template css html, premium lms training web template, training course responsive website"/>
+
+		<!-- Favicon -->
+		<link rel="icon" href="~/assets/images/brand/favicon.ico" type="image/x-icon"/>
+		<link rel="shortcut icon" type="image/x-icon" href="~/assets/images/brand/favicon.ico" />
+
+		<!-- Title -->
+        <title>JamalKhanah </title>
+		<!-- Bootstrap css -->
+		<link id="style" href="~/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
+		<!-- Dashboard css -->
+		<link href="~/assets/css/style.css" rel="stylesheet" />
+		<link href="~/assets/css/dark-style.css" rel="stylesheet" />
+		<link href="~/assets/css/transparent-style.css" rel="stylesheet" />
+		<link href="~/assets/css/admin-custom.css" rel="stylesheet" />
+
+		<!---Font icons-->
+		<link href="~/assets/css/icons.css" rel="stylesheet"/>
+
+		<!-- Color Skin css -->
+		<link id="theme" rel="stylesheet" type="text/css" media="all" href="~/assets/color-skins/color.css" />
+		
+	</head>
+
+	<body class="construction-image">
+
+		<!--Loader-->
+		<div id="global-loader">
+			<img src="~/assets/images/loader.svg" class="loader-img" alt="">
+		</div>
+
+		<!--Page-->
+		@RenderBody()
+
+		<!-- JQuery js-->
+		<script src="~/assets/js/jquery.min.js"></script>
+
+		<!-- Bootstrap js -->
+		<script src="~/assets/plugins/bootstrap/js/popper.min.js"></script>
+		<script src="~/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+
+		<!--JQuery Sparkline Js-->
+		<script src="~/assets/js/jquery.sparkline.min.js"></script>
+
+		<!-- Circle Progress Js-->
+		<script src="~/assets/js/circle-progress.min.js"></script>
+
+		<!-- pscroll bar Js-->
+		<script src="~/assets/plugins/pscrollbar/pscrollbar.js"></script>
+
+		<!-- Sidemenu Js-->
+		<script src="~/assets/plugins/sidemenu/sidemenu.js"></script>
+
+		<!--Counters -->
+		<script src="~/assets/plugins/counters/counterup.min.js"></script>
+		<script src="~/assets/plugins/counters/waypoints.min.js"></script>
+
+		<!-- Theme Color js-->
+		<script src="~/assets/js/themecolors.js"></script>
+
+		<!-- Custom Js-->
+		<script src="~/assets/js/admin-custom.js"></script>
+		<script src="~/assets/js/custom-switcher.js"></script>
+
+		<!--  Render Section Scripts  -->
+		@await RenderSectionAsync("Scripts", required: false)
+	</body>
+</html>

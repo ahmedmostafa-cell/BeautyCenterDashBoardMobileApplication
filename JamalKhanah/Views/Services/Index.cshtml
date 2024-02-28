@@ -1,0 +1,190 @@
+﻿@model IEnumerable<Service>
+
+@{
+    ViewData["Title"] = "كل الخدمات  ";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+    var error = (TempData["Error"]!=null)? TempData["Error"] : null ;  
+    var success = (TempData["Success"]!=null)? TempData["Success"] : null ;
+}
+<div class="row">
+    <div class="col-md-12 col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title" >الخدمات </h3>
+                @if (error != null)
+                {
+                    <div style="text-align: center;" class="alert alert-danger" role="alert">
+                        @error
+                    </div>
+                }
+                @if (success != null)
+                {
+                    <div style="text-align: center;" class="alert alert-success" role="alert">
+                        @success
+                    </div>
+                }
+            </div>
+            <div class="table-responsive" style="padding: 1.5rem; overflow-x: inherit;">
+                <table class="table mb-0 table-borderless" id="table_id">
+                    <thead>
+                    <tr>
+                        <th>
+                            الصورة 
+                        </th>
+                        <th>
+                            نوع الخدمة 
+                        </th>
+                        <th>
+                           اسم مقدم الخدمة 
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.TitleAr)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.MainSection)
+                        </th>
+                        <th>
+                            الحالة
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.IsFeatured)
+                        </th>
+                       
+                        <th>
+                           مكان الخدمة 
+                        </th>
+                      
+                        <th>
+                           التحكم 
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var item in Model) {
+                        <tr>
+                            <td>
+                                <img src="@item.ImgUrl" class="avatar avatar-sm me-3 border-radius-lg" alt="user1">
+                            </td>
+                            <td>
+                                @if (item.ServiceType == ServiceType.Center)
+                                {
+                                    <span class="badge badge-success">مركز</span>
+                                }
+                                else
+                                {
+                                    <span class="badge badge-danger"> عمل حر</span>
+                                }
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Provider.FullName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TitleAr)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MainSection.TitleAr)
+                            </td>
+                        
+                            <td>
+                                @if (item.IsShow)
+                                {
+                                    <span class="badge badge-success">ظاهر</span>
+                                }
+                                else
+                                {
+                                    <span class="badge badge-danger"> مختفي</span>
+                                }
+                            </td>
+                            
+                            <td>
+                                @if (item.IsFeatured)
+                                {
+                                    <span class="badge badge-success">مميز</span>
+                                }
+                                else
+                                {
+                                    <span class="badge badge-danger">غير مميز</span>
+                                }
+                            </td>
+                            <td>
+                                @if (item.InHome && item.InCenter)
+                                {
+                                        <span class="badge badge-success">مركز ومنزل</span>
+                                }
+                                else if (item.InHome)
+                                {
+                                        <span class="badge badge-success">منزل</span>
+                                }
+                                else if (item.InCenter)
+                                {
+                                        <span class="badge badge-success">مركز</span>
+                                }
+                                else
+                                {
+                                        <span class="badge badge-danger">غير محدد</span>
+                                }
+                             
+                               
+                            </td>
+                            <td>   
+                                <div class="item-action dropdown">
+                                    <a href="javascript:void(0)" data-bs-toggle="dropdown" class="icon"><i class="fe fe-more-vertical fs-20 text-dark"></i></a>
+                                    <div class="dropdown-menu dropdown-menu-end">
+																
+                                        <a  asp-action="Edit" asp-route-id="@item.Id"class="dropdown-item btn btn-warning">تعديل</a>
+                                        <a  asp-action="Details" asp-route-id="@item.Id"class="dropdown-item btn btn-info">تفاصيل</a>
+                                        <a asp-action="Delete" asp-route-id="@item.Id" style="margin: 0.3rem" class="btn btn-danger dropdown-item" onclick="return confirm('هل أنت متأكد من الحذف ؟ ');">حذف </a>
+                                        @if (@item.IsShow)
+                                        {
+                                            <a asp-action="Hide" asp-route-id="@item.Id" class="dropdown-item btn btn-danger" onclick="return confirm('هل أنت متأكد من أخفاء هذه الفئة؟ ');">أخفاء </a>
+                                        }
+                                        else
+                                        {
+                                            <a asp-action="Show" asp-route-id="@item.Id" class="dropdown-item btn btn-success" onclick="return confirm('هل أنت متأكد من إظهار هذه الفئة؟ ');">إظهار </a>
+                                        }	
+                                        @if (@item.IsFeatured)
+                                        {
+                                            <a asp-action="NotFeatured" asp-route-id="@item.Id" class="dropdown-item btn btn-danger" onclick="return confirm('هل أنت متأكد من ألغاء التميز؟ ');">ألغاء التميز </a>
+                                        }
+                                        else
+                                        {
+                                            <a asp-action="Featured" asp-route-id="@item.Id" class="dropdown-item btn btn-success" onclick="return confirm('هل أنت متأكد من تمييز هذه الفئة؟ ');">تمييز </a>
+                                        }	
+                                     
+                                    </div>
+                                </div>
+                            </td>
+                            
+
+
+                       
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    
+    <script>
+         $(document).ready( function () {
+                $('#table_id').DataTable( {
+                     paging: true,
+                     ordering:  false,
+                     "pagingType": "simple_numbers",
+                     "lengthMenu": [ 5, 20, 75, 100 ] ,
+                     "oLanguage": {
+                                   "sSearch": "البحث"
+                                  }
+                } );
+        } );
+ 
+
+    </script>
+}
+

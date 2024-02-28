@@ -1,0 +1,185 @@
+﻿@model DashboardCounts
+	
+			@{
+				Layout = "~/Views/Shared/_MainLayout.cshtml";
+				ViewBag.Title = "لوحة تحكم المسؤول";
+			}
+				<!--App-Content-->
+			
+						<!--/Page-Header-->
+
+						<div class="row item-all-cat">
+							<div class="col-xl-2 col-md-6">
+								<div class="item-all-card bg-purple text-center">
+									<a href="javascript:void(0);"></a>
+									<div class="iteam-all-icon">
+										<i class="fe fe-mail w-30"></i>
+									</div>
+									<div class="item-all-text mt-3">
+										<p>عدد المدن </p>
+										<h1 class="mb-0 counter font-weight-bold">@Model.Cities</h1>
+									</div>
+								</div>
+							</div>
+							<div class="col-xl-2 col-md-6">
+								<div class="item-all-card bg-lime text-center">
+									<a href="javascript:void(0);"></a>
+									<div class="iteam-all-icon">
+										<i class="fe fe-volume-1 w-30"></i>
+									</div>
+									<div class="item-all-text mt-3">
+										<p>عدد مقدمي الخدمات الموافق عليهم </p>
+										<h1 class="mb-0 counter font-weight-bold">@Model.AllProviders</h1>
+									</div>
+								</div>
+							</div>
+							<div class="col-xl-2 col-md-6">
+								<div class="item-all-card bg-pink text-center">
+									<a href="javascript:void(0);"></a>
+									<div class="iteam-all-icon">
+										<i class="fe fe-message-square w-30"></i>
+									</div>
+									<div class="item-all-text mt-3">
+										<p>عدد المراكز</p>
+										<h1 class="mb-0 counter font-weight-bold">@Model.Centers</h1>
+									</div>
+								</div>
+							</div>
+							<div class="col-xl-2 col-md-6">
+								<div class="item-all-card bg-orange text-center">
+									<a href="javascript:void(0);"></a>
+									<div class="iteam-all-icon">
+										<i class="fe fe-external-link w-30"></i>
+									</div>
+									<div class="item-all-text mt-3">
+										<p>عدد المستقليين </p>
+										<h1 class="mb-0 counter font-weight-bold">@Model.FreeAgents</h1>
+									</div>
+								</div>
+							</div>
+							<div class="col-xl-2 col-md-6">
+								<div class="item-all-card bg-blue text-center">
+									<a href="javascript:void(0);"></a>
+									<div class="iteam-all-icon">
+										<i class="fe fe-edit w-30"></i>
+									</div>
+									<div class="item-all-text mt-3">
+										<p>عدد مقدمي الخدمات الذين يحتاجون لموافقة </p>
+										<h1 class="mb-0 counter font-weight-bold">@Model.AllProvidersWaitApproved</h1>
+									</div>
+								</div>
+							</div>
+							<div class="col-xl-2 col-md-6">
+								<div class="item-all-card bg-yellow text-center">
+									<a href="javascript:void(0);"></a>
+									<div class="iteam-all-icon">
+										<i class="fe fe-book-open w-30"></i>
+									</div>
+									<div class="item-all-text mt-3">
+										<p>عدد الاقسام الرئيسية</p>
+										<h1 class="mb-0 counter font-weight-bold">@Model.AllSections</h1>
+									</div>
+								</div>
+							</div>
+                            <div class="col-xl-2 col-md-6">
+                                <div class="item-all-card bg-yellow text-center">
+                                    <a href="javascript:void(0);"></a>
+                                    <div class="iteam-all-icon">
+                                        <i class="fe fe-book-open w-30"></i>
+                                    </div>
+                                    <div class="item-all-text mt-3">
+                                        <p>عدد الخدمات </p>
+                                        <h1 class="mb-0 counter font-weight-bold">@Model.AllServices</h1>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-2 col-md-6">
+                                <div class="item-all-card bg-purple text-center">
+                                    <a href="javascript:void(0);"></a>
+                                    <div class="iteam-all-icon">
+                                        <i class="fe fe-mail w-30"></i>
+                                    </div>
+                                    <div class="item-all-text mt-3">
+                                        <p>عدد كل الطلبات </p>
+                                        <h1 class="mb-0 counter font-weight-bold">@Model.AllOrders</h1>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-2 col-md-6">
+                                <div class="item-all-card bg-lime text-center">
+                                    <a href="javascript:void(0);"></a>
+                                    <div class="iteam-all-icon">
+                                        <i class="fe fe-volume-1 w-30"></i>
+                                    </div>
+                                    <div class="item-all-text mt-3">
+                                        <p>عدد الطلبات المنتهية  </p>
+                                        <h1 class="mb-0 counter font-weight-bold">@Model.AllFinishOrders</h1>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-2 col-md-6">
+                                <div class="item-all-card bg-purple text-center">
+                                    <a href="javascript:void(0);"></a>
+                                    <div class="iteam-all-icon">
+                                        <i class="fe fe-mail w-30"></i>
+                                    </div>
+                                    <div class="item-all-text mt-3">
+                                        <p>كل الاموال المدفوعة</p>
+                                        <h1 class="mb-0 counter font-weight-bold">@Model.TotalAmount</h1>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-2 col-md-6">
+                                <div class="item-all-card bg-lime text-center">
+                                    <a href="javascript:void(0);"></a>
+                                    <div class="iteam-all-icon">
+                                        <i class="fe fe-volume-1 w-30"></i>
+                                    </div>
+                                    <div class="item-all-text mt-3">
+                                        <p>الارباح  </p>
+                                        <h1 class="mb-0 counter font-weight-bold">@Model.Profits</h1>
+                                    </div>
+                                </div>
+                            </div>
+							<div class="col-xl-2 col-md-6">
+							<div class="item-all-card bg-lime text-center">
+								<a href="javascript:void(0);"></a>
+								<div class="iteam-all-icon">
+									<i class="fe fe-volume-1 w-30"></i>
+								</div>
+								<div class="item-all-text mt-3">
+									<p>قائمة بالمستخدمين الراغبين  حذف الحساب  </p>
+									<h1 class="mb-0 counter font-weight-bold">@Model.usersWantDelete</h1>
+								</div>
+							</div>
+							</div>
+							<div class="col-xl-2 col-md-6">
+								<div class="item-all-card bg-lime text-center">
+									<a href="javascript:void(0);"></a>
+									<div class="iteam-all-icon">
+										<i class="fe fe-volume-1 w-30"></i>
+									</div>
+									<div class="item-all-text mt-3">
+										<p>قائمة بمقدمي الخدمات الراغبين  حذف الحساب  </p>
+										<h1 class="mb-0 counter font-weight-bold">@Model.serviceProvidersWantDelete</h1>
+									</div>
+								</div>
+							</div>
+							<div class="col-xl-2 col-md-6">
+								<div class="item-all-card bg-lime text-center">
+									<a href="javascript:void(0);"></a>
+									<div class="iteam-all-icon">
+										<i class="fe fe-volume-1 w-30"></i>
+									</div>
+									<div class="item-all-text mt-3">
+										<p>قائمة الشكاوي  </p>
+										<h1 class="mb-0 counter font-weight-bold">@Model.AllComplains</h1>
+									</div>
+								</div>
+							</div>
+						</div>
+			
+
+		
+
+	

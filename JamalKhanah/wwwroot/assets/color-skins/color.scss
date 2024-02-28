@@ -1,0 +1,1599 @@
+@import "../scss/variables";
+
+a:hover {
+    color: $primary;
+    text-decoration: none;
+}
+
+.horizontalMenu > .horizontalMenu-list > li > .horizontal-megamenu .link-list li a.active {
+    color: $primary;
+}
+
+.owl-controls .owl-page.active {
+    border-color: $primary;
+    opacity: 1;
+
+    &:hover {
+        border-color: $primary;
+        opacity: 1;
+    }
+}
+
+.owl-carousel:hover .owl-nav button,
+.owl-nav button {
+    color: $primary !important;
+}
+
+.item-card7-overlaytext h4 {
+    background: $primary;
+}
+
+.bg-background-color:before {
+    background: rgba(5, 36, 86, 0.9) !important;
+}
+
+.btn-primary {
+    color: $white;
+    background-color: $primary;
+    border-color: $primary;
+
+    &:hover {
+        color: $white;
+        background-color: $primary-hover !important;
+        border-color: $primary !important;
+    }
+
+    &:focus,
+    &.focus {
+        box-shadow: 0 0 0 2px $primary-01;
+        background-color: $primary-hover;
+        border-color: $primary;
+    }
+
+    &.disabled,
+    &:disabled {
+        color: $white;
+        background-color: $primary;
+        border-color: $primary;
+    }
+
+    &:not(:disabled):not(.disabled) {
+        &:active,
+        &.active {
+            color: $white;
+            background-color: $primary;
+            border-color: $primary;
+        }
+    }
+}
+
+.show > .btn-primary.dropdown-toggle {
+    color: $white;
+    background-color: $primary;
+    border-color: $primary;
+}
+
+.btn-primary:not(:disabled):not(.disabled) {
+    &:active:focus,
+    &.active:focus {
+        box-shadow: 0 0 0 2px rgba(236, 41, 107, 0.1);
+    }
+}
+
+.show > .btn-primary.dropdown-toggle:focus {
+    box-shadow: 0 0 0 2px rgba(236, 41, 107, 0.1);
+}
+
+.btn-outline-primary {
+    color: $primary;
+    background-color: transparent;
+    background-image: none;
+    border-color: $primary !important;
+
+    &:hover {
+        color: $white;
+        background-color: $primary;
+        border-color: $primary !important;
+    }
+
+    &:focus,
+    &.focus {
+        box-shadow: 0 0 0 2px $primary-01;
+    }
+
+    &.disabled,
+    &:disabled {
+        color: $primary;
+        background-color: transparent;
+    }
+
+    &:not(:disabled):not(.disabled) {
+        &:active,
+        &.active {
+            color: $white;
+            background-color: $primary;
+            border-color: $primary;
+        }
+    }
+}
+
+.show > .btn-outline-primary.dropdown-toggle {
+    color: $white;
+    background-color: $primary;
+    border-color: $primary;
+}
+
+.btn-outline-primary:not(:disabled):not(.disabled) {
+    &:active:focus,
+    &.active:focus {
+        box-shadow: 0 0 0 2px $primary-01;
+    }
+}
+
+.show > .btn-outline-primary.dropdown-toggle:focus {
+    box-shadow: 0 0 0 2px $primary-01;
+}
+
+.btn-secondary {
+    color: $white !important;
+    background-color: $secondary !important;
+    border-color: $secondary !important;
+
+    &:hover {
+        color: $white;
+        background-color: $secondary-hover !important;
+        border-color: $secondary !important;
+    }
+
+    &.focus,
+    &:focus {
+        box-shadow: 0 0 0 2px rgba(54, 42, 232, 0.1);
+    }
+
+    &.disabled,
+    &:disabled {
+        color: $white;
+        background-color: $secondary;
+        border-color: $secondary;
+    }
+
+    &:not(:disabled):not(.disabled) {
+        &.active,
+        &:active {
+            color: $white;
+            background-color: $secondary;
+            border-color: $secondary;
+        }
+    }
+}
+
+.show > .btn-secondary.dropdown-toggle {
+    color: $white;
+    background-color: $secondary;
+    border-color: $secondary;
+}
+
+.btn-secondary:not(:disabled):not(.disabled) {
+    &.active:focus,
+    &:active:focus {
+        box-shadow: 0 0 0 2px rgba(54, 42, 232, 0.1);
+    }
+}
+
+.show > .btn-secondary.dropdown-toggle:focus {
+    box-shadow: 0 0 0 2px rgba(54, 42, 232, 0.1);
+}
+
+.btn-link {
+    color: $primary;
+}
+
+.alert-primary {
+    color: #fcfdff;
+    background-color: $primary;
+    border-color: $primary;
+
+    hr {
+        border-top-color: #b7cded;
+    }
+
+    .alert-link {
+        color: #2e5961;
+    }
+}
+
+.label-primary {
+    background-color: $primary;
+}
+
+.badge-primary {
+    color: $white;
+    background-color: $primary;
+
+    &[href] {
+        &:hover,
+        &:focus {
+            color: $white;
+            text-decoration: none;
+            background-color: $primary;
+        }
+    }
+}
+
+.bg-gradient-primary {
+    background: linear-gradient(-225deg, $secondary-07 35%, $primary-07 100%) !important;
+}
+
+.bg-primary {
+    background-color: $primary !important;
+}
+
+a.bg-primary {
+    &:hover,
+    &:focus {
+        background-color: $primary !important;
+    }
+}
+
+button.bg-primary {
+    &:hover,
+    &:focus {
+        background-color: $primary !important;
+    }
+}
+
+.border-primary {
+    border-color: $primary !important;
+}
+
+.text-primary {
+    color: $primary !important;
+}
+
+// a {
+// 	&.text-primary {
+// 		&:hover,
+// 		&:focus {
+// 			color: #06aecc !important;
+// 		}
+// 	}
+// 	&.text-dark {
+// 		&:hover,
+// 		&:focus {
+// 			color: $primary !important;
+// 		}
+// 	}
+// }
+
+.social-box.linkedin i {
+    background: $primary;
+}
+
+.checkbox span:after,
+.user-card .card-block .activity-leval li.active {
+    background-color: $primary;
+}
+
+#count-down .clock-presenter .digit,
+.notifyimg {
+    background: $primary;
+}
+
+.drop-icon-wrap .drop-icon-item:hover {
+    color: $primary;
+}
+
+.dropdown-item {
+    &:hover,
+    &:focus,
+    &.active,
+    &:active {
+        color: $primary;
+    }
+}
+
+.custom-control-input:checked ~ .custom-control-label::before {
+    color: $white;
+    border-color: $primary;
+    background-color: $primary;
+}
+
+.custom-checkbox .custom-control-input {
+    &:checked ~ .custom-control-label::before,
+    &:indeterminate ~ .custom-control-label::before {
+        background-color: $primary;
+    }
+}
+
+.custom-radio .custom-control-input:checked ~ .custom-control-label::before {
+    background-color: $primary;
+}
+
+.custom-select:focus {
+    border-color: $primary;
+}
+
+.custom-file-input:focus ~ .custom-file-label {
+    border-color: $primary;
+    box-shadow: 0 0 0 2px rgba(8, 208, 243, 0.25);
+
+    &::after {
+        border-color: $primary;
+    }
+}
+
+.custom-file-label::after {
+    background-color: $primary;
+    border-left: 1px solid $primary;
+}
+
+.custom-range {
+    &::-webkit-slider-thumb,
+    &::-moz-range-thumb,
+    &::-ms-thumb {
+        background-color: $primary;
+    }
+}
+
+.nav-link.active {
+    background-color: $primary;
+}
+
+.nav-pills {
+    .nav-link.active,
+    .show > .nav-link {
+        background-color: $primary;
+    }
+}
+
+.page-link:hover {
+    color: $primary;
+}
+
+.page-item.active .page-link {
+    background-color: $primary;
+    border-color: $primary;
+}
+
+.range.range-primary {
+    input[type="range"] {
+        &::-webkit-slider-thumb,
+        &::-moz-slider-thumb {
+            background-color: $primary;
+        }
+    }
+
+    output {
+        background-color: $primary;
+    }
+
+    input[type="range"] {
+        outline-color: $primary;
+    }
+}
+
+.nav-tabs .nav-item1 .nav-link {
+    &:hover:not(.disabled),
+    &.active {
+        background: $primary;
+    }
+}
+
+.panel.price > .panel-heading {
+    background: $primary;
+    color: $white;
+}
+
+.heading-primary {
+    background-color: $primary;
+}
+
+.page-header .breadcrumb-item a {
+    color: #2c2c2c;
+}
+
+.breadcrumb-item1 a:hover,
+.panel-title1 a {
+    color: $primary;
+}
+
+.header-bg {
+    background: #eef2f9;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(111.7deg, rgba(146, 30, 152, 0.7) 19.9%, rgba(59, 25, 249, 0.7) 95%);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(-225deg, $secondary-07 35%, $primary-07 100%) !important;
+}
+
+.nav-tabs .nav-link {
+    &:hover:not(.disabled),
+    &.active {
+        color: $white;
+        background: $primary !important;
+    }
+}
+
+.admin-navbar {
+    .nav-item.active .nav-link {
+        color: $primary;
+
+        .icon {
+            color: $primary;
+        }
+    }
+
+    .nav-link {
+        &:hover,
+        &:focus,
+        &.active {
+            color: $primary;
+        }
+    }
+
+    .mega-dropdown .sub-item .section-label {
+        color: $primary;
+    }
+
+    .sub-item ul a {
+        &:active {
+            background-color: $primary;
+        }
+
+        &:hover,
+        &:focus {
+            color: $primary;
+            text-decoration: none;
+            background-color: #f5f7fd;
+        }
+    }
+}
+
+.expanel-primary {
+    > .expanel-heading {
+        color: $white !important;
+        background-color: $primary !important;
+        border-color: $primary !important;
+    }
+}
+
+.error-img .form-control:focus {
+    color: $white;
+    background-color: $white-2;
+    border-color: $primary;
+    outline: 0;
+    box-shadow: 0 0 0 2px rgba(8, 208, 243, 0.25);
+}
+
+.avatar {
+    background: $primary no-repeat center/cover;
+}
+
+.spinner {
+    background: linear-gradient(111.7deg, $primary 19.9%, $secondary 95%);
+}
+
+.spinner-lg {
+    background-color: $primary;
+}
+
+.double-bounce1,
+.double-bounce2,
+.cube1,
+.cube2 {
+    background: linear-gradient(111.7deg, $primary 19.9%, $secondary 95%);
+}
+
+.lds-heart div {
+    background: $primary;
+
+    &:after,
+    &:before {
+        background: $primary;
+    }
+}
+
+.lds-ring div {
+    border: 6px solid $primary;
+    border-color: $primary transparent transparent transparent;
+}
+
+.lds-hourglass:after {
+    border: 26px solid $primary;
+    border-color: $primary transparent;
+}
+
+.mediaicon {
+    border: 1px solid $primary;
+    background: $primary;
+}
+
+a.chip:hover {
+    background-color: $primary;
+}
+
+.highlight .s {
+    color: $primary;
+}
+
+.selectgroup-input {
+    &:checked + .selectgroup-button {
+        border-color: $primary;
+        z-index: 1;
+        color: $primary;
+        background: #f6f7fb;
+    }
+
+    &:focus + .selectgroup-button {
+        border-color: $primary;
+        z-index: 2;
+        color: $primary;
+        box-shadow: 0 0 0 2px rgba(236, 41, 107, 0.25);
+    }
+}
+
+.custom-switch-input {
+    &:checked ~ .custom-switch-indicator {
+        background: $primary;
+    }
+
+    &:focus ~ .custom-switch-indicator {
+        box-shadow: 0 0 0 2px rgba(236, 41, 107, 0.25);
+        border-color: $primary;
+    }
+}
+
+.imagecheck-figure:before {
+    background: $primary url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3E%3C/svg%3E") no-repeat center (center / 50%) 50%;
+    color: $white;
+}
+
+.colorinput-input:focus ~ .colorinput-color {
+    border-color: $primary;
+    box-shadow: 0 0 0 2px rgba(236, 41, 107, 0.25);
+}
+
+.ui-datepicker .ui-datepicker-title {
+    color: $primary;
+}
+
+#back-to-top {
+    background: $primary;
+
+    &:hover {
+        background: $white;
+        color: $primary;
+        border: 2px solid $primary;
+    }
+}
+
+#chat-message {
+    background: linear-gradient(-225deg, $secondary-07 35%, $primary-07 100%) !important;
+}
+
+.tabs-menu ul li .active {
+    background: $primary !important;
+    color: $white !important;
+}
+
+.tabs-menu1 ul li .active {
+    border: 1px solid $primary;
+    color: $primary;
+}
+
+.wideget-user-tab .tabs-menu1 ul li .active {
+    border-bottom: 2px solid $primary !important;
+}
+
+.rating-stars .rating-stars-container .rating-star {
+    &.is--active .fa-heart,
+    &.is--hover .fa-heart {
+        color: $primary;
+    }
+}
+
+.message-feed:not(.right) .mf-content {
+    background: $primary;
+    color: $white;
+
+    &:before {
+        border-right-color: $primary;
+    }
+}
+
+.msb-reply button {
+    background: $primary;
+}
+
+.wizard-card {
+    .moving-tab {
+        background-color: $primary !important;
+    }
+
+    .choice {
+        &:hover .icon,
+        &.active .icon {
+            border-color: $primary !important;
+            color: $primary !important;
+        }
+    }
+}
+
+.cal1 .clndr {
+    .clndr-table {
+        .header-days {
+            background: $primary;
+        }
+
+        tr .day {
+            &.today.event,
+            &.my-today.event {
+                background: $primary;
+            }
+
+            &.today:hover,
+            &.my-today:hover {
+                background: $primary;
+                color: $white;
+            }
+        }
+    }
+
+    .clndr-controls .clndr-control-button {
+        .clndr-previous-button {
+            color: $primary;
+            background: #e6f2fe;
+        }
+
+        .clndr-next-button {
+            color: $primary;
+            background: #e6f2fe;
+
+            &:hover {
+                background: $primary;
+            }
+        }
+
+        .clndr-previous-button:hover {
+            background: $primary;
+        }
+    }
+}
+
+.fc button {
+    background: $primary;
+}
+
+.fc-event,
+.fc-event-dot {
+    // background-color: $primary;
+    color: $white !important;
+}
+
+.sweet-alert button {
+    background-color: $primary !important;
+}
+
+.timeline__item:after {
+    border: 6px solid $primary;
+}
+
+.label-primary.arrowed:before {
+    border-right-color: $primary;
+}
+
+.widgetdate p,
+.widgetbox p,
+.datebox p {
+    border-bottom: 2px solid $primary;
+}
+
+.arrow-ribbon.bg-primary:before {
+    border-left: 15px solid $primary;
+}
+
+.arrow-ribbon2:before {
+    border-left: 24px solid $primary;
+}
+
+.badge-offer.bg-primary:after,
+.badge-offer1.bg-primary:after {
+    border-top: 12px solid $primary;
+}
+
+.social-icons li:hover {
+    background: $primary;
+    color: $white;
+}
+
+.social li a:hover,
+.footer-main a:hover,
+.footer-links a:hover {
+    color: $primary;
+}
+
+.product-tags li a:hover {
+    background: $primary;
+    border-color: $primary;
+}
+
+.info .counter-icon {
+    border: 1px solid rgba(59, 26, 97, 0.2) !important;
+    background: rgba(21, 17, 17, 0.4) !important;
+    border: 1px solid $white-6;
+    text-align: center;
+    justify-content: center;
+
+    i {
+        color: $white;
+        font-size: 1.8rem;
+        line-height: 21px;
+    }
+}
+
+.counter-icon {
+    border: 1px solid $primary;
+
+    i {
+        color: $primary;
+    }
+}
+
+.header-links li a {
+    &.active,
+    &:hover {
+        background: $primary;
+        color: $white;
+    }
+}
+
+.card-pay .tabs-menu li a.active,
+.item1-tabs-menu ul li .active {
+    background: $primary;
+}
+
+.items-blog-tab-heading .items-blog-tab-menu li .active {
+    background: $primary !important;
+    color: $white;
+}
+
+.item2-gl-nav .item2-gl-menu li .active {
+    color: $primary !important;
+}
+
+.item-all-cat {
+    .item-all-card:hover .item-all-text h5 {
+        color: $primary !important;
+    }
+
+    .category-type .item-all-card img {
+        background: linear-gradient(-225deg, $secondary-07 35%, $primary-07 100%) !important;
+    }
+}
+
+.carousel-indicators li.active {
+    color: $white;
+    background: $primary;
+}
+
+.item-cards7-ic.realestate-list li a:hover {
+    color: $primary;
+}
+
+.item1-links a {
+    &:hover {
+        color: $primary;
+    }
+
+    &.active {
+        background: #f0f4f9;
+        color: $primary;
+        border-right: 2px solid $primary;
+    }
+}
+
+.settings-tab .tabs-menu li a.active {
+    background: $primary;
+}
+
+.ads-tabs .tabs-menus ul li .active {
+    background: $primary;
+    color: $white;
+    border: 0;
+}
+
+.showmore-button-inner {
+    border: 1px solid $primary;
+    color: $primary;
+}
+
+.owl-nav > div i {
+    color: $primary;
+}
+
+.tabs-menu ul.eductaional-tabs li .active {
+    background: $primary;
+}
+
+.register-right .nav-tabs .nav-link:hover {
+    background: $primary;
+    color: $white;
+}
+
+.gradient-icon {
+    background: linear-gradient(111.7deg, $secondary 19.9%, $primary 95%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.axgmap-img {
+    border: 3px solid $primary;
+}
+
+.horizontalMenu > .horizontalMenu-list > li {
+    > {
+        .horizontal-megamenu .menu_form input {
+            &[type="submit"],
+            &[type="button"] {
+                background-color: $primary;
+                color: $white;
+            }
+        }
+
+        a.active {
+            color: $primary;
+        }
+    }
+
+    &:hover > a {
+        color: $primary;
+
+        .fa {
+            background-color: $primary;
+            color: $white !important;
+        }
+    }
+
+    > ul.sub-menu > li {
+        &:hover > a {
+            background-color: $primary;
+            color: $white !important;
+        }
+
+        > ul.sub-menu > li {
+            &:hover > a {
+                background-color: $primary;
+                color: $white !important;
+            }
+
+            > ul.sub-menu > li:hover a {
+                background-color: $primary;
+                color: $white;
+            }
+        }
+    }
+}
+
+code {
+    color: $primary;
+}
+
+#gdpr-cookie-message {
+    h4,
+    h5 {
+        color: $primary;
+    }
+
+    a {
+        color: $primary;
+        border-bottom: 1px solid $primary;
+
+        &:hover {
+            border-bottom: 1px solid $primary;
+            transition: all 0.3s ease-in;
+            color: $primary;
+        }
+    }
+}
+
+button#gdpr-cookie-advanced {
+    color: $white;
+    background-color: $primary !important;
+}
+
+.ui-widget-header,
+.ui-state-default,
+.ui-widget-content .ui-state-default,
+.ui-widget-header .ui-state-default {
+    background: $primary;
+}
+
+.app-sidebar .side-menu li a.active {
+    color: $primary;
+}
+
+.navtab-wizard.nav-tabs .nav-link {
+    &.active,
+    &:hover {
+        color: $white;
+        background: $primary !important;
+    }
+}
+
+.form-inline .nav-search .btn {
+    border: 2px solid $primary;
+}
+
+.wrapper > h1 span {
+    border-bottom: 2px solid $primary;
+    color: $primary;
+}
+
+.tab_wrapper {
+    > ul li.active {
+        border-color: $primary;
+        background: $primary;
+        color: $white;
+    }
+
+    .controller span {
+        background: $primary;
+    }
+
+    .content_wrapper .accordian_header.active {
+        color: $primary;
+
+        &:after {
+            background: $primary;
+        }
+
+        .arrow {
+            border-top: 3px solid $primary;
+            border-left: 3px solid $primary;
+        }
+    }
+
+    &.left_side > ul li.active:after,
+    &.right_side > ul li.active:after {
+        background: $primary;
+    }
+}
+
+.addui-slider .addui-slider-track {
+    .addui-slider-range,
+    .addui-slider-handle:after {
+        background: $primary;
+    }
+}
+
+.accordionjs .acc_section.acc_active > .acc_head {
+    background: $primary;
+}
+
+.perfect-datetimepicker tbody td.selected {
+    border: 1px solid $primary;
+    background-color: $primary;
+}
+
+div.conv-form-wrapper div {
+    &.options div.option {
+        border: 1px solid $primary;
+        color: $primary;
+    }
+
+    &#messages div.message.from {
+        background: $primary;
+    }
+
+    &.options div.option.selected {
+        background: $primary;
+        color: $white;
+    }
+}
+
+form.convFormDynamic button.submit {
+    border: 1px solid $primary;
+    background: $primary;
+
+    &:hover {
+        background: $primary;
+        color: $white;
+    }
+}
+
+.exzoom {
+    .exzoom_nav .exzoom_nav_inner span.current {
+        border: 1px solid $primary;
+    }
+
+    .exzoom_btn a {
+        /*border: 1px solid $primary   ;*/
+        color: $primary;
+    }
+}
+
+.prev:hover {
+    transform: translate(-5px, 0px);
+    color: $primary !important;
+}
+
+.next:hover {
+    color: $primary !important;
+}
+
+.g_f-s {
+    .prev:hover i {
+        transform: translate(-5px, 0px);
+        color: $primary;
+    }
+
+    .next:hover i {
+        transform: translate(5px, 0px);
+        color: $primary;
+    }
+
+    .close-button > *:hover {
+        color: $primary;
+    }
+}
+
+.horizontalMenu > .horizontalMenu-list > li > .horizontal-megamenu .link-list li a:hover {
+    color: $primary;
+}
+
+.register {
+    background: linear-gradient(111.7deg, rgb(146, 30, 152) 19.9%, rgb(59, 25, 249) 95%);
+}
+
+.btnRegister {
+    background: $primary;
+}
+
+.register .nav-tabs .nav-link.active {
+    color: $primary;
+    border: 1px solid $primary;
+}
+
+.pretty {
+    input:checked ~ .state.p-primary label:after,
+    &.p-toggle .state.p-primary label:after {
+        background-color: $primary !important;
+    }
+
+    input:checked ~ .state.p-primary-o label:before,
+    &.p-toggle .state.p-primary-o label:before {
+        border-color: $primary;
+    }
+
+    input:checked ~ .state.p-primary-o {
+        .icon1,
+        .svg,
+        svg {
+            color: $primary;
+            stroke: $primary;
+        }
+    }
+
+    &.p-toggle .state.p-primary-o {
+        .icon1,
+        .svg,
+        svg {
+            color: $primary;
+            stroke: $primary;
+        }
+    }
+
+    &.p-default:not(.p-fill) input:checked ~ .state.p-primary-o label:after {
+        background-color: $primary !important;
+    }
+
+    &.p-switch {
+        input:checked ~ .state.p-primary:before {
+            border-color: $primary;
+        }
+
+        &.p-fill input:checked ~ .state.p-primary:before {
+            background-color: $primary !important;
+        }
+    }
+}
+
+.owl-carousel button.owl-dot {
+    background: $black-2 !important;
+
+    &.active {
+        background: #0c295a !important;
+    }
+}
+
+.bg-background:before {
+    background: linear-gradient(-225deg, $secondary-07 35%, $primary-07 100%);
+}
+
+.bg-background2:before,
+.bg-background3:before,
+.bg-background-5:before,
+.bg-background-6:before,
+.slider-header .item:before {
+    background: linear-gradient(-225deg, $secondary-07 35%, $primary-07 100%) !important;
+}
+
+// .select2-container--default.select2-container--focus .select2-selection--multiple {
+// 	box-shadow: 0 0 0 2px rgba(8, 208, 243, 0.25);
+// }
+
+.custom-control-input:focus ~ .custom-control-label::before {
+    box-shadow: 0 0 0 1px #f5f7fd, 0 0 0 2px $primary-03;
+}
+
+.custom-range {
+    &::-webkit-slider-thumb:focus,
+    &::-moz-range-thumb:focus,
+    &::-ms-thumb:focus {
+        outline: none;
+        box-shadow: 0 0 0 1px #f5f7fd, 0 0 0 2px rgba(8, 208, 243, 0.25);
+    }
+}
+
+.selectize-input.focus {
+    border-color: $blue;
+    box-shadow: 0 0 0 2px rgba(8, 208, 243, 0.25);
+}
+
+.item-card:hover .item-card-desc:before,
+.item-card7-imgs:hover a {
+    background: linear-gradient(-225deg, $secondary-07 35%, $primary-07 100%) !important;
+}
+
+.item-card2-img:hover a {
+    background: linear-gradient(-225deg, $secondary-07 35%, $primary-07 100%) !important;
+}
+
+.countdown li .number {
+    color: $primary;
+}
+
+.app-sidebar:before,
+.app-sidebar-footer {
+    background: linear-gradient(to right, rgba(146, 30, 152, 0.9), rgba(59, 25, 249, 0.8));
+}
+
+.masthead .masthead-bg {
+    background: linear-gradient(111.7deg, rgb(146, 30, 152) 19.9%, rgb(59, 25, 249) 95%) !important;
+}
+
+@media (max-width: 992px) {
+    .search-show .nav-search {
+        background: linear-gradient(to right, rgb(146, 30, 152), rgb(59, 25, 249));
+    }
+}
+
+@media (max-width: 992px) {
+    .nav-item.with-sub .sub-item {
+        border-top: 2px solid $primary;
+    }
+}
+
+@media (max-width: 480px) {
+    .zoom-container .arrow-ribbon2:before {
+        border-top: 17px solid transparent;
+        border-left: 17px solid $primary;
+        border-bottom: 17px solid transparent;
+    }
+}
+
+.bg-secondary {
+    background-color: $secondary !important;
+}
+
+a.bg-secondary {
+    &:hover,
+    &:focus {
+        background-color: $secondary !important;
+    }
+}
+
+button.bg-secondary {
+    &:hover,
+    &:focus {
+        background-color: $secondary !important;
+    }
+}
+
+.btn-secondary {
+    &:focus,
+    &.focus {
+        box-shadow: 0 0 0 2px $secondary-01;
+    }
+
+    &.disabled,
+    &:disabled {
+        color: $white;
+        background-color: $secondary;
+        border-color: $secondary;
+    }
+
+    &:not(:disabled):not(.disabled) {
+        &:active,
+        &.active {
+            color: $white;
+            background-color: $secondary;
+            border-color: $secondary;
+        }
+    }
+}
+
+.show > .btn-secondary.dropdown-toggle {
+    color: $white;
+    background-color: $secondary;
+    border-color: $secondary;
+}
+
+.btn-secondary:not(:disabled):not(.disabled) {
+    &:active:focus,
+    &.active:focus {
+        box-shadow: 0 0 0 2px rgba(4, 55, 140, 0.5);
+    }
+}
+
+.show > .btn-secondary.dropdown-toggle:focus {
+    box-shadow: 0 0 0 2px rgba(4, 55, 140, 0.5);
+}
+
+.bg-linkedin {
+    background: #0077b5;
+}
+
+.bg-facebook {
+    background: #3C5A99;
+}
+
+.accent-2 {
+    border-top: 2px solid $primary;
+}
+
+.item-card .item-card-desc:before {
+    background: rgba(28, 45, 72, 0.6);
+}
+
+@media (min-width: 992px) {
+    .sticky-wrapper.is-sticky .horizontalMenu > .horizontalMenu-list > li > a.active {
+        color: $primary;
+        font-weight: 700;
+    }
+}
+
+.arrow-ribbon.bg-secondary:before {
+    border-left: 15px solid #0c295a;
+}
+
+.sticky-wrapper.relative.banners .horizontalMenu > .horizontalMenu-list > li {
+    > a.active,
+    &:hover > a {
+        background-color: $primary;
+    }
+}
+
+.construction-image:before {
+    content: '';
+    background: linear-gradient(-225deg, $secondary-07 35%, $primary-07 100%) !important;
+}
+
+.construction {
+    z-index: 1;
+}
+
+.countdown-timer-wrapper .timer .timer-wrapper .time {
+    color: $primary;
+    background: rgb(255, 255, 255);
+}
+
+.pricingTable {
+    .pricingTable-signup {
+        background: rgba(8, 208, 243, 0.12);
+        color: $primary;
+    }
+
+    &:hover .title {
+        background: $primary;
+        color: $white;
+    }
+
+    &.advance-pricing {
+        border: 1px solid $primary;
+    }
+
+    &:hover {
+        border: 1px solid $primary;
+
+        .title {
+            &:before {
+                border-right-color: $primary;
+            }
+
+            &:after {
+                border-left-color: $primary;
+            }
+        }
+    }
+
+    .title {
+        &:before {
+            content: "";
+            border-right: 26px solid rgba(8, 208, 243, 0.1);
+        }
+
+        &:after {
+            content: "";
+            border-right: 26px solid rgba(8, 208, 243, 0.1);
+            border-right: none;
+            border-left: 26px solid rgba(8, 208, 243, 0.1);
+        }
+
+        color: $primary;
+    }
+}
+
+.error-image:before {
+    background: linear-gradient(-225deg, $secondary-07 35%, $primary-07 100%) !important;
+}
+
+.bg-card:hover .cat-img i {
+    color: $white;
+}
+
+.form-group.is-focused.form-rose .form-control {
+    background-image: linear-gradient($primary, $primary), linear-gradient(#eff4fc, #eff4fc);
+}
+
+.user-tabs ul li a.active {
+    background: $primary;
+    color: $white;
+}
+
+.accent-2 {
+    border-top: 2px solid $primary !important;
+}
+
+.item-card8-overlaytext h6 {
+    background: $primary;
+}
+
+@media (max-width: 991px) {
+    .horizontalMenu > .horizontalMenu-list > li > a.active {
+        background-color: $primary;
+        color: $white;
+    }
+}
+
+@media (min-width: 992px) {
+    .sticky-wrapper.is-sticky .horizontal-main {
+        background: $secondary !important;
+    }
+}
+
+.sticky-wrapper.absolute.banners .horizontalMenu > .horizontalMenu-list > li {
+    &:hover > a,
+    > a.active {
+        background-color: $primary;
+        color: $white !important;
+    }
+}
+
+.ribbon-1 {
+    &:after {
+        border-top: 13px solid $primary;
+    }
+
+    span {
+        background: $primary;
+
+        &:before,
+        &:after {
+            background: $primary;
+        }
+    }
+}
+
+.header-main i,
+.header-icons-link .header-icons-link1 i {
+    color: $white;
+}
+
+.pricingTable:hover .pricingTable-signup {
+    background: $primary;
+    color: $white;
+}
+
+.pricingTable2.pink .pricing-plans {
+    background-color: $primary;
+}
+
+.bg-card-light:hover {
+    box-shadow: 0 0 40px 0 rgba(8, 21, 66, 0.06);
+    background: $white;
+    border-color: $primary;
+}
+
+.status-border:hover {
+    border: 1px solid $primary !important;
+
+    i {
+        color: $primary !important;
+    }
+}
+
+.bg-card {
+    &:hover {
+        box-shadow: 0 0 40px 0 rgba(152, 154, 158, 0.5);
+        background: $primary;
+        color: $white;
+    }
+
+    .cat-img i {
+        color: $primary;
+    }
+}
+
+.breadcrumb-item.active {
+    color: $primary;
+}
+
+.owl-carousel {
+    .owl-nav button {
+        &.owl-prev,
+        &.owl-next {
+            background: rgba(8, 208, 243, 0.3);
+        }
+    }
+
+    button.owl-dot {
+        background: rgba(8, 208, 243, 0.3);
+    }
+}
+
+.horizontal-main {
+    background: $secondary;
+}
+
+.animated-arrow span {
+    background: $white;
+
+    &:before,
+    &:after {
+        background: $white;
+    }
+}
+
+.callusbtn i {
+    color: $white;
+}
+
+.badge-secondary {
+    color: $white;
+    background-color: $secondary;
+
+    &[href] {
+        &:focus,
+        &:hover {
+            color: $white;
+            text-decoration: none;
+            background-color: $secondary;
+        }
+    }
+}
+
+.owl-controls .owl-page.active:before {
+    border-top-color: $primary;
+}
+
+.bg-secondary-transparent {
+    background-color: $secondary-01;
+}
+
+.bg-primary-transparent {
+    background-color: $primary-01;
+}
+
+.text-secondary {
+    color: $secondary !important;
+}
+
+.tag-primary {
+    background-color: $primary;
+    color: $white;
+}
+
+.tag-secondary {
+    background-color: $secondary;
+    color: $white;
+}
+
+.sectiontitle-design .icons,
+.service-widgets:hover {
+    background: $primary;
+}
+
+.pattern-1:before,
+.pattern:before {
+    background: linear-gradient(-225deg, $secondary-07 35%, $primary-07 100%) !important;
+}
+
+.pattern-2 {
+    background: linear-gradient(-225deg, $secondary-07 35%, $primary-07 100%), url(../images/products/products/subscribe.jpg) !important;
+}
+
+.onoffswitch-checkbox:checked + .onoffswitch-label {
+    background: $primary;
+    border-color: $primary;
+
+    &:before {
+        border-color: $primary;
+    }
+}
+
+.onoffswitch2-checkbox:checked + {
+    .onoffswitch2-label {
+        background: $primary;
+    }
+
+    .onoffswitch-label2,
+    .onoffswitch2-label:before {
+        border-color: $primary;
+    }
+}
+
+.onoffswitch3-checkbox:checked + {
+    .onoffswitch3-label {
+        background: $primary;
+    }
+
+    .onoffswitch-label3,
+    .onoffswitch3-label:before {
+        border-color: $primary;
+    }
+}
+
+#gdpr-cookie-message button,
+button#ihavecookiesBtn {
+    background: $secondary;
+}
+
+.ui-state-hover,
+.ui-widget-content .ui-state-hover,
+.ui-widget-header .ui-state-hover,
+.ui-state-focus,
+.ui-widget-content .ui-state-focus,
+.ui-widget-header .ui-state-focus {
+    border: 1px solid $primary;
+    background: $primary;
+}
+
+.pricingTable2.blue .pricing-plans {
+    background-color: $secondary;
+}
+
+.header-main .dropdown-item i {
+    color: #2e384d;
+}
+
+.header-main .dropdown-item:hover i {
+    color: $primary !important;
+}
+
+.bg-dark {
+    background-color: #170944 !important;
+}
+
+.horizontalMenu > .horizontalMenu-list > li > ul.sub-menu > li > a.active {
+    color: $primary;
+}
+
+*::-ms-backdrop,
+.gradient-icon {
+    color: $primary;
+    background: transparent;
+}
+
+.horizontalMenu > .horizontalMenu-list > li > ul.sub-menu > li > ul.sub-menu > li > a.active {
+    color: $primary;
+}

@@ -1,0 +1,98 @@
+﻿@model ApplicationUser
+
+@{
+    ViewData["Title"] = "تفاصيل عن المسؤول";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+<div class="row">						
+    <div class="col-xl-8">
+        <div class="card m-b-20">
+            <div class="card-header">
+                <h3 class="card-title">تفاصيل عن المسؤول @Model.FullName </h3>
+            </div>
+            <div class="card-body mb-0">
+                    
+                <dl class="row">
+       
+        
+                    <dt class = "col-sm-4">
+                        الاسم بالكامل  
+                    </dt>
+                    <dd class = "col-sm-10">
+                        @Html.DisplayFor(model => model.FullName)
+                    </dd>
+                    <dt class = "col-sm-4">
+                        رقم الهاتف
+                    </dt>
+                    <dd class = "col-sm-10">
+                        @Html.DisplayFor(model => model.PhoneNumber)
+                    </dd>
+                    <dt class = "col-sm-4">
+                      البريد الالكتروني
+                    </dt>
+                    <dd class = "col-sm-10">
+                        @Html.DisplayFor(model => model.Email)
+                    </dd>
+                    <dt class = "col-sm-4">
+                      الوصف
+                    </dt>
+                    <dd class = "col-sm-10">
+                        @Html.Raw(Model.Description)
+                    </dd>
+                    <dt class = "col-sm-4">
+                      المدينة 
+                    </dt>
+                    <dd class = "col-sm-10">
+                        @Html.DisplayFor(model => model.City.NameAr)
+                    </dd>
+                    @if (Model.UserType == UserType.Center)
+                    {
+                        <dt class = "col-sm-4">
+                            الرقم الضريبي
+                        </dt>
+                        <dd class = "col-sm-10">
+                            @Html.DisplayFor(model => model.TaxNumber)
+                        </dd>
+                    }
+                    <dt class = "col-sm-4">
+                        الصورة
+                    </dt>
+                    <dd class = "col-sm-10">
+                        @if (@Model.UserImgUrl!=null)
+                        {
+                            <img src="@Model.UserImgUrl" class="avatar avatar-sm me-3 border-radius-lg" alt="License Photo"style="width: 24rem;height: 14rem;" >
+                        }
+                        else
+                        {
+                            <p>لا توجد صورة </p>
+                        }
+                    </dd>
+                    @if (Model.UserType == UserType.FreeAgent)
+                    {
+                        <dt class = "col-sm-4">
+                            صورة أستمارة العمل الحر 
+                        </dt>
+                        <dd class = "col-sm-10">
+                            @if (@Model.UserImgUrl!=null)
+                            {
+                                <img src="@Model.UserImgUrl" class="avatar avatar-sm me-3 border-radius-lg" alt="License Photo"style="width: 24rem;height: 14rem;" >
+                            }
+                            else
+                            {
+                                <p>لا توجد صورة </p>
+                            }
+                        </dd>
+                    }
+                 
+
+       
+                </dl>
+            </div>
+        </div>
+    </div>
+</div>
+
+ <div style="margin-bottom: 4rem;text-align: end;">
+ @*   <a asp-action="Edit" asp-route-id="@Model.Id"class="btn btn-warning">تعديل</a> *@
+    <a asp-action="Index"class="btn btn-secondary">العودة للقائمة</a>
+</div>

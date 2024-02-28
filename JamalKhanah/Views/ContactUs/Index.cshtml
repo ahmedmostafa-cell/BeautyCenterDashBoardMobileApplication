@@ -1,0 +1,104 @@
+﻿@model IEnumerable<ContactUs>
+
+@{
+    ViewData["Title"] = "كل بيانات التواصل ";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+    var error = TempData["Error"] ;  
+    var success = TempData["Success"] ;
+}
+
+<div class="row">
+    <div class="col-md-12 col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title" >كل البيانات </h3>
+                @if (error != null)
+                {
+                    <div style="text-align: center;" class="alert alert-danger" role="alert">
+                        @error
+                    </div>
+                }
+                @if (success != null)
+                {
+                    <div style="text-align: center;" class="alert alert-success" role="alert">
+                        @success
+                    </div>
+                }
+            </div>
+
+            <div class="table-responsive" style="padding:1.5rem">
+                <table class="table mb-0 table-borderless" id="table_id">
+                    <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.WhatsAppNumber)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Email)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Link)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.FaceBookLink)
+                        </th>
+                     
+                        <th>
+                            @Html.DisplayNameFor(model => model.PhoneNumber)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.TermsAndConditions)
+                        </th>
+                      
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.TermsAndConditionsAr)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.TermsAndConditions)
+                        </th>
+                       
+                       
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var item in Model) {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.WhatsAppNumber)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Email)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Link)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FaceBookLink)
+                            </td>
+                         
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PhoneNumber)
+                            </td>
+                          
+                            <td>
+                                @Html.Raw(item.TermsAndConditions)
+                            </td>
+                            <td>
+                                @Html.Raw(item.TermsAndConditionsAr)
+                            </td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.Id"class="btn btn-warning">تعديل</a> 
+                                <a asp-action="Details" asp-route-id="@item.Id"class="btn btn-info">تفاصيل</a>
+                            </td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+

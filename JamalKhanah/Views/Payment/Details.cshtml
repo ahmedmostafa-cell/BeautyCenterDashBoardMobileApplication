@@ -1,0 +1,168 @@
+﻿@using JamalKhanah.Core.Entity.PaymentData;
+@using System.Globalization;
+@model PaymentHistory
+
+@{
+    ViewData["Title"] = "تفاصيل عملية الدفع";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-xl-8">
+        <div class="card m-b-20">
+            @if (TempData["IsRefunded"] != null)
+            {
+                if (bool.Parse(TempData["IsRefunded"].ToString()))
+                {
+                    <div class="alert alert-success">
+                        تمت عمليه إرجاع المبلغ المدفوع للعميل بنجاح.
+                    </div>
+                }
+                else
+                {
+                    <div class="alert alert-danger">
+                        عفواً ، لم تتم عملية إرجاع المبلغ المدفوع الى العميل.
+                    </div>
+                }
+                
+                TempData.Remove("IsRefunded");
+            }
+            <div class="card-header">
+                <h3 class="card-title"> تفاصيل عمليه الدفع رقم @Model.TransactionNumber</h3>
+            </div>
+            <div class="card-body mb-0">
+                <dl class="row">
+                    <dt class="col-sm-4">
+                        رقم العملية عند بوابة الدفع
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.PaymentId)
+                    </dd>
+                    <dt class="col-sm-4">
+                        الحالة
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Status)
+                    </dd>
+                    <dt class="col-sm-4">
+                        توقيت العملية
+                    </dt>
+                    <dd class="col-sm-10">
+                        @(Model.Created_at.HasValue ? Model.Created_at.Value.ToString("dd MMMM yyyy hh:mm tt", new CultureInfo("ar-EG")) : "لا يوجد")
+                    </dd>
+                    <dt class="col-sm-4">
+                        المبلغ المدفوع
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Amount_format)
+                    </dd>
+                    <dt class="col-sm-4">
+                        هل تم طلب إسترجاع؟
+                    </dt>
+                    <dd class="col-sm-10">
+                        @(Model.Refunded_at.HasValue ? "نعم" : "لا")
+                    </dd>
+                    <dt class="col-sm-4">
+                        تاريخ الاسترجاع
+                    </dt>
+                    <dd class="col-sm-10">
+                        @(Model.Refunded_at.HasValue ? Model.Refunded_at.Value.ToString("dd MMMM yyyy hh:mm tt", new CultureInfo("ar-EG")) : "لا يوجد")
+                    </dd>
+                    <dt class="col-sm-4">
+                        المبلغ المُسترجع
+                    </dt>
+                    <dd class="col-sm-10">
+                        @(Model.Refunded_at.HasValue ? Model.Refunded_format : "لا يوجد")
+                    </dd>
+                    <dt class="col-sm-4">
+                        وصف العملية
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Description)
+                    </dd>
+                    <dt class="col-sm-4">
+                        IP
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Ip)
+                    </dd>
+                    <dt class="col-sm-4">
+                        شركة بطاقة الدفع
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Source_Company)
+                    </dd>
+                    <dt class="col-sm-4">
+                        اسم بطاقة الدفع
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Source_Name)
+                    </dd>
+                    <dt class="col-sm-4">
+                        رقم بطاقة الدفع
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Source_Number)
+                    </dd>
+                    @if (Model.Order != null)
+                    {
+                        <dt class="col-sm-4">
+                            رقم الطلب
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.Order.Id)
+                        </dd>
+                        <dt class="col-sm-4">
+                            اسم الخدمة
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Model.Order.Service?.TitleAr
+                        </dd>
+                        <dt class="col-sm-4">
+                            اسم مقدم الخدمة
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Model.Order.Service?.Provider?.FullName
+                        </dd>
+                        <dt class="col-sm-4">
+                            اسم العميل
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Model.Order.User?.FullName
+                        </dd>
+                        <dt class="col-sm-4">
+                            حالة الطلب
+                        </dt>
+                        <dd class="col-sm-10">
+                            @if (Model.Order.OrderStatus == OrderStatus.Preparing)
+                            {
+                                <span class="badge badge-warning">قيد الانتظار</span>
+                            }
+                            else if (Model.Order.OrderStatus == OrderStatus.Confirmed)
+                            {
+                                <span class="badge badge-success">مقبول</span>
+                            }
+                            else if (Model.Order.OrderStatus == OrderStatus.WithDriver)
+                            {
+                                <span class="badge badge-danger">قيد التوصيل </span>
+                            }
+                            else if (Model.Order.OrderStatus == OrderStatus.Finished)
+                            {
+                                <span class="badge badge-primary">مكتمل</span>
+                            }
+                            else if (Model.Order.OrderStatus == OrderStatus.Cancelled)
+                            {
+                                <span class="badge badge-secondary">ملغي</span>
+                            }
+                        </dd>
+                    }
+                </dl>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div style="margin-bottom: 4rem;text-align: end;">
+    <a asp-action="Index" class="btn btn-secondary">العودة للقائمة</a>
+</div>
+

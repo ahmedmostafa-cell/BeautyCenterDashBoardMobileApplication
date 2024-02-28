@@ -1,0 +1,253 @@
+﻿@model Service
+
+@{
+    ViewData["Title"] = "تعديل البيانات";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<div class="row">						
+    <div class="col-xl-8">
+        <div class="card m-b-20">
+            <div class="card-header">
+                <h3 class="card-title">تعديل البيانات </h3>
+                <div style="display: none; text-align: center;" class="alert alert-danger" id="errorMessage" role="alert">
+
+                </div>
+                <div style="display: none; text-align: center;" class="alert alert-success" id="successMessage" role="alert">
+
+                </div>
+            </div>
+            <div class="card-body mb-0"> 
+                <form class="form-horizontal" asp-action="Edit" enctype="multipart/form-data" runat="server">
+                    <div asp-validation-summary="All" style="margin-bottom: 2rem; text-align: center;" class="text-danger"></div>
+                    
+                    <input type="hidden" asp-for="Id" />
+                    <input type="hidden" asp-for="CreatedAt" />
+                    <input type="hidden" asp-for="IsDeleted" />
+                    <input type="hidden" asp-for="UpdatedAt" />
+                    <input type="hidden" asp-for="IsUpdated" />
+                    <input type="hidden" asp-for="IsFeatured" />
+                    <input type="hidden" asp-for="IsShow" />
+                    <input type="hidden" asp-for="ImgUrl" />
+                    <input type="hidden" asp-for="IsAvailable" />
+                    <input type="hidden" asp-for="ServiceType" />
+                    
+                     
+                    <div class="form-group">
+                        <label asp-for="ProviderId" class="control-label"></label>
+                        <select id="select-state"  onchange="getUserData()" asp-for="ProviderId" class="form-control select2" asp-items="ViewBag.UserId">
+                            <option value="">اختر المستخدم</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="MainSectionId" class="control-label"></label>
+                        <select asp-for="MainSectionId" class="form-control" asp-items="ViewBag.MainSectionId">
+                            <option value="">اختر القسم الرئيسي</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="TitleAr" class="control-label"></label>
+                        <input asp-for="TitleAr" class="form-control"/>
+                        <span asp-validation-for="TitleAr" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="TitleEn" class="control-label"></label>
+                        <input asp-for="TitleEn" class="form-control"/>
+                        <span asp-validation-for="TitleEn" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Description" class="control-label"></label>
+                        <textarea rows="5" asp-for="Description" id="editor1" class="form-control " > </textarea>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="PriceUnit" class="control-label"></label>
+                        <select asp-for="PriceUnit" class="form-control" asp-items="Html.GetEnumSelectList<PriceUnite>()">
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Duration" class="control-label"></label>
+                        <input asp-for="Duration" class="form-control"/>
+                        <span asp-validation-for="Duration" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Price" class="control-label"></label>
+                        <input id="thePrice" onchange="changeFinalPrice()" asp-for="Price" class="form-control"/>
+                        <span asp-validation-for="Price" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Discount" class="control-label"></label>
+                        <input id="theDiscount" onchange="changeFinalPrice()" asp-for="Discount" class="form-control"/>
+                        <span asp-validation-for="Discount" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="FinalPrice" class="control-label"></label>
+                        <input id="theFinalPrice" readonly="" asp-for="FinalPrice" class="form-control"/>
+                        <span asp-validation-for="FinalPrice" class="text-danger"></span>
+                    </div>
+                    <div class="form-group" id="divEmployeesNumber" style="display:@(@Model.ServiceType == ServiceType.Center?"block":"none;") ">
+                        <label asp-for="EmployeesNumber" class="control-label"></label>
+                        <input id="inputEmployeesNumber" asp-for="EmployeesNumber" class="form-control"/>
+                        <span asp-validation-for="EmployeesNumber" class="text-danger"></span>
+                    </div>
+                    <div class="form-group form-check" id="inHome"style="display:@(@Model.ServiceType == ServiceType.Center?"block":"none;") ">
+                        <label class="form-check-label">
+                            <input class="form-check-input" id="inHomeInput" asp-for="InHome"/> @Html.DisplayNameFor(model => model.InHome)
+                        </label>
+                    </div>
+                    <div class="form-group form-check" id="inCenter" style="display:@(@Model.ServiceType == ServiceType.Center?"block":"none;") ">
+                        <label class="form-check-label">
+                            <input class="form-check-input" id="inCenterInput" asp-for="InCenter"/> @Html.DisplayNameFor(model => model.InCenter)
+                        </label>
+                    </div>
+
+                    <div class="form-group ">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label class="form-label" id="inputEmail3" asp-for="ImgFile"></label>
+                            </div>
+                            <div class="col-md-9">
+                                <input type="file" asp-for="ImgFile" class="dropify" data-height="180"/>
+                                <span asp-validation-for="ImgFile" class="text-danger"></span>
+                            </div>
+
+                        </div>
+                    </div>
+                       
+                    
+                  
+                   
+                    
+					
+                        	
+
+                    <div class="form-group mb-0 row justify-content-end">
+                        <div class="col-md-9 float-end">
+                            <input type="submit" value="تعديل " class="btn btn-primary waves-effect waves-light">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+		
+ <div style="margin-bottom: 4rem;text-align: end;">
+    <a asp-action="Index"class="btn btn-secondary">العودة للقائمة</a>
+</div>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+        <script>
+                    tinymce.init({
+                        selector: "textarea",
+                         branding: false,
+                        promotion: false,
+                         statusbar: false
+                    });
+        </script>
+        <script>
+           function getUserData(){
+                    let userId = $("#select-state").val();
+                 console.log(userId);
+
+                         $.ajax({
+                            url: "/Services/CheckUserType",
+                            data:{"userId":userId},
+                            dataType: 'json',
+                            contentType: "application/json; charset=utf-8",
+                            success: function(result){
+                                 console.log(result)
+
+                                 if (result.error==false)
+                                 {
+                                      $('#errorMessage').hide();
+                                      $('#errorMessage').empty();
+                                      $('#successMessage').empty();
+                                      $('#successMessage').show();
+                                      $('#successMessage').append(result.message);
+
+                                         if (result.type==1)
+                                         {
+                                             $("#divEmployeesNumber").show();
+                                             $("#inHome").show();
+                                             $("#inCenter").show();
+                                         }
+                                         else
+                                         {
+                                             $("#divEmployeesNumber").hide();
+                                             $("#inHome").show();
+                                             $("#inCenter").hide();
+                                             document.getElementById('inCenterInput').checked = false;
+                                             $("#inputEmployeesNumber").val('0');
+                                         }
+                                 }
+
+                                  else
+                                 {
+
+                                     $('#successMessage').hide();
+                                     $('#successMessage').empty();
+                                     $('#errorMessage').empty();
+                                     $('#errorMessage').show();
+                                     $('#errorMessage').append(result.message);
+                                       $("#inCenter").hide();
+                                       $("#inHome").hide();
+                                       $("#divEmployeesNumber").hide();
+                                       document.getElementById('inCenterInput').checked = false;
+                                       document.getElementById('inHomeInput').checked = false;
+                                       $("#inputEmployeesNumber").val('0');
+
+                                 }
+
+                             },
+                            failure: function (response) {
+                                alert(response.responseText);
+                            },
+                            error: function (response) {
+                                alert(response.responseText);
+                            }
+                         });
+
+
+                     } 
+
+
+        </script>
+        <script>
+
+            function changeFinalPrice()
+            {
+                let price = $("#thePrice").val();
+                let discount = $("#theDiscount").val();
+                    if (price=='' )
+                    {
+                        $("#theFinalPrice").val('');
+                    }
+                     if (discount== 0 || discount=='')
+                    {
+                        $("#theFinalPrice").val(price);
+                    }
+                    else
+                    {
+                        let finalPrice = price - (price * discount / 100);
+                        $("#theFinalPrice").val(finalPrice);
+                    }
+                let finalPrice = price - (price * discount / 100);
+                $("#theFinalPrice").val(finalPrice);
+            }
+
+
+
+
+        </script>
+
+}

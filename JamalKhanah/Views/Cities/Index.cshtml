@@ -1,0 +1,102 @@
+﻿@model IEnumerable<City>
+
+@{
+    ViewData["Title"] = "كل المحافظات";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+    var error = TempData["Error"] ;  
+    var success = TempData["Success"] ;
+}
+
+<div class="row">
+	<div class="col-md-12 col-lg-12">
+		<div class="card">
+			<div class="card-header">
+				<h3 class="card-title" >كل المحافظات</h3>
+                  @if (error != null)
+                    {
+                        <div style="text-align: center;" class="alert alert-danger" role="alert">
+                            @error
+                        </div>
+                    }
+                    @if (success != null)
+                    {
+                        <div style="text-align: center;" class="alert alert-success" role="alert">
+                            @success
+                        </div>
+                    }
+			</div>
+			<div class="table-responsive" style="padding:1.5rem">
+				<table class="table mb-0 table-borderless" id="table_id">
+				<thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.NameAr)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.NameEn)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CountryEn)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CountryAr)
+                        </th>
+                      
+                        <th> التحكم </th>
+                    </tr>
+                </thead>
+				<tbody>
+                        @foreach (var item in Model) {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.NameAr)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.NameEn)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.CountryEn)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.CountryAr)
+                                    </td>
+                                    
+                                    <td>
+                                        <a asp-action="Edit" asp-route-id="@item.Id"class="btn btn-warning">تعديل</a> 
+                                        <a asp-action="Details" asp-route-id="@item.Id"class="btn btn-info">تفاصيل</a>
+                                        @if (@item.IsShow)
+                                            {
+                                                <a asp-action="Hide" asp-route-id="@item.Id" class="btn btn-danger" onclick="return confirm('هل أنت متأكد من أخفاء هذه المدينة؟ ');">أخفاء </a>
+                                            }else
+                                            {
+                                                <a asp-action="Show" asp-route-id="@item.Id" class="btn btn-success" onclick="return confirm('هل أنت متأكد من إظهار هذه المدينة؟ ');">إظهار </a>
+                                            }
+                                    </td>
+                                </tr>
+                        }
+                    </tbody>
+				</table>
+			</div>
+		</div>
+    </div>
+ </div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    
+    <script>
+         $(document).ready( function () {
+                $('#table_id').DataTable( {
+                     paging: true,
+                     ordering:  true,
+                     "pagingType": "simple_numbers",
+                     "lengthMenu": [ 5, 20, 75, 100 ] ,
+                     "oLanguage": {
+                                   "sSearch": "البحث"
+                                  }
+                } );
+        } );
+ 
+
+    </script>
+}

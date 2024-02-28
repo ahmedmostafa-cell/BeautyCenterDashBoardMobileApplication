@@ -1,0 +1,81 @@
+﻿@model ContactUs
+
+@{
+    ViewData["Title"] = "تعديل البيانات ";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<div class="row">						
+    <div class="col-xl-8">
+        <div class="card m-b-20">
+            <div class="card-header">
+                <h3 class="card-title">تعديل بيانات التواصل </h3>
+            </div>
+            <div class="card-body mb-0">
+                <form class="form-horizontal" asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="Id" />
+            
+                    <div class="form-group">
+                        <label asp-for="WhatsAppNumber" class="control-label"></label>
+                        <input asp-for="WhatsAppNumber" class="form-control" />
+                        <span asp-validation-for="WhatsAppNumber" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Email" class="control-label"></label>
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Link" class="control-label"></label>
+                        <input asp-for="Link" class="form-control" />
+                        <span asp-validation-for="Link" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="FaceBookLink" class="control-label"></label>
+                        <input asp-for="FaceBookLink" class="form-control" />
+                        <span asp-validation-for="FaceBookLink" class="text-danger"></span>
+                    </div>
+                  
+                    
+                    <div class="form-group">
+                        <label asp-for="TermsAndConditions" class="control-label"></label>
+                        <textarea rows="5" asp-for="TermsAndConditions" id="editor1" class="form-control " > </textarea>
+                        <span asp-validation-for="TermsAndConditions" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="TermsAndConditionsAr" class="control-label"></label>
+                        <textarea style="height: 15rem;" id="editor2"  asp-for="TermsAndConditionsAr" class="form-control " > </textarea>
+                        <span asp-validation-for="TermsAndConditionsAr" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Save" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div style="margin-bottom: 4rem;text-align: end;">
+    <a asp-action="Index"class="btn btn-secondary">العودة للقائمة</a>
+</div>
+
+<style>
+    .mce-notification {display: none !important;}
+</style>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+   
+    <script>
+        tinymce.init({
+            selector: "textarea",
+             branding: false,
+            promotion: false,
+             statusbar: false
+        });
+    </script>
+
+}

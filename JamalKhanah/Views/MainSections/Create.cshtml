@@ -1,0 +1,82 @@
+﻿@model MainSection
+
+@{
+    ViewData["Title"] = " الفئات";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+   <div class="row">						
+       <div class="col-xl-8">
+			<div class="card m-b-20">
+				<div class="card-header">
+					<h3 class="card-title">أنشاء فئة جديدة  </h3>
+				</div>
+				<div class="card-body mb-0"> 
+					<form class="form-horizontal" asp-action="Create" enctype="multipart/form-data" runat="server">
+                          <div asp-validation-summary="All" style="margin-bottom: 2rem; text-align: center;" class="text-danger"></div>
+                        <div class="form-group">
+                            <label asp-for="TitleAr" class="control-label"></label>
+                            <input asp-for="TitleAr" class="form-control" />
+                            <span asp-validation-for="TitleAr" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="TitleEn" class="control-label"></label>
+                            <input asp-for="TitleEn" class="form-control" />
+                            <span asp-validation-for="TitleEn" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Description" class="control-label"></label>
+                            <textarea rows="5" asp-for="Description" id="editor1" class="form-control " > </textarea>
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Rank" class="control-label"></label>
+                            <input asp-for="Rank" class="form-control" />
+                            <span asp-validation-for="Rank" class="text-danger"></span>
+                        </div>
+                        <div class="form-group " >
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label class="form-label" id="inputEmail3" asp-for="ImgFile"></label>
+                                </div>
+                                <div class="col-md-9">
+                                    <input type="file" asp-for="ImgFile" class="dropify" data-height="180" />
+                                    <span asp-validation-for="ImgFile" class="text-danger"></span>
+                                </div>
+                             
+                            </div>
+                        </div>
+                       
+				
+                       
+                      
+						<div class="form-group mb-0 row justify-content-end">
+							<div class="col-md-9 float-end">
+								<input type="submit" value="أنشاء" class="btn btn-primary waves-effect waves-light">
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+   </div>
+		
+ <div style="margin-bottom: 4rem;text-align: end;">
+    <a asp-action="Index"class="btn btn-secondary">العودة للقائمة</a>
+</div>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+        <script>
+                tinymce.init({
+                    selector: "textarea",
+                     branding: false,
+                    promotion: false,
+                     statusbar: false
+                });
+            </script>
+
+}

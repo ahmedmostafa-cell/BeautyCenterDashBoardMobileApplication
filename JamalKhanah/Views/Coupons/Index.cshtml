@@ -1,0 +1,133 @@
+﻿@model IEnumerable<CouponModelView>
+
+@{
+    ViewData["Title"] = "كل الكوبونات  ";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+    var error = TempData["Error"] ;  
+    var success = TempData["Success"] ;
+}
+<div class="row">
+    <div class="col-md-12 col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title" >الكوبونات </h3>
+                @if (error != null)
+                {
+                    <div style="text-align: center;" class="alert alert-danger" role="alert">
+                        @error
+                    </div>
+                }
+                @if (success != null)
+                {
+                    <div style="text-align: center;" class="alert alert-success" role="alert">
+                        @success
+                    </div>
+                }
+            </div>
+            <div class="table-responsive" style="padding: 1.5rem; overflow-x: inherit;">
+                <table class="table mb-0 table-borderless" id="table_id">
+                    <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CouponCode)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DiscountType)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Discount)
+                        </th>
+                       <th>
+                            @Html.DisplayNameFor(model => model.CouponType)
+                        </th>
+                       
+                        <th>
+                            @Html.DisplayNameFor(model => model.TotalOrderUsed)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.IsActive)
+                        </th>
+                        
+                        <th>
+                           التحكم 
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var item in Model) {
+                        <tr>
+                          
+                           
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CouponCode)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DiscountType)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Discount)
+                            </td>
+                           
+                          
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CouponType)
+                            </td>
+                            
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TotalOrderUsed)
+                            </td>
+                            <td>
+                                @if (item.IsActive)
+                                {
+                                    <span class="badge badge-success">فعال</span>
+                                }
+                                else
+                                {
+                                    <span class="badge badge-danger">غير فعال </span>
+                                }
+                            </td>
+                        
+                           
+                            <td>   
+                                <div class="item-action dropdown">
+                                    <a href="javascript:void(0)" data-bs-toggle="dropdown" class="icon"><i class="fe fe-more-vertical fs-20 text-dark"></i></a>
+                                    <div class="dropdown-menu dropdown-menu-end">						
+                                        <a  asp-action="Edit" asp-route-id="@item.Id"class="dropdown-item btn btn-warning">تعديل</a>
+                                        <a asp-action="Delete" asp-route-id="@item.Id" style="margin: 0.3rem" class="btn btn-danger dropdown-item" onclick="return confirm('هل أنت متأكد من الحذف ؟ ');">حذف </a>
+                                    </div>
+                                </div>
+                            </td>
+                            
+
+
+                       
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    
+    <script>
+         $(document).ready( function () {
+                $('#table_id').DataTable( {
+                     paging: true,
+                     ordering:  false,
+                     "pagingType": "simple_numbers",
+                     "lengthMenu": [ 5, 20, 75, 100 ] ,
+                     "oLanguage": {
+                                   "sSearch": "البحث"
+                                  }
+                } );
+        } );
+ 
+
+    </script>
+}
+

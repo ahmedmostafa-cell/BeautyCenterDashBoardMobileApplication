@@ -1,0 +1,28 @@
+﻿@model BaseResponse
+@{
+    ViewData["Title"] = "Error 500";
+    var details = (Model.Data != null) ? Model.Data.ToString() : Model.ErrorMessage;
+}
+
+<!--Page-->
+<div class="page page-h custom-page">
+    <div class="page-content z-documentation-10">
+        <div class="container text-center text-white">
+            <div class="display-1 mb-5"> @Model.ErrorCode</div>
+            <h1 class="h2  mb-3">@Model.ErrorMessage</h1>
+            <p class="h4 font-weight-normal mb-7 leading-normal">Oops!!!! @details . go back to Home</p>
+            <a class="btn btn-primary" asp-controller="Home"asp-action="Index">
+                Back To Home
+            </a>
+        </div>
+    </div>
+</div>
+
+
+   
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,169 @@
+﻿@model Coupon
+
+@{
+    ViewData["Title"] = " الكوبونات";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-xl-8">
+        <div class="card m-b-20">
+            <div class="card-header">
+                <h3 class="card-title">أنشاء كوبون جديدة </h3>
+                <div style="display: none; text-align: center;" class="alert alert-danger" id="errorMessage" role="alert">
+
+                </div>
+                <div style="display: none; text-align: center;" class="alert alert-success" id="successMessage" role="alert">
+
+                </div>
+            </div>
+            <div class="card-body mb-0">
+                <form class="form-horizontal" asp-action="Create" enctype="multipart/form-data" runat="server">
+                    <div asp-validation-summary="All" style="margin-bottom: 2rem; text-align: center;" class="text-danger"></div>
+
+                   
+                  
+                    <div class="form-group">
+                        <label asp-for="CouponCode" class="control-label"></label>
+                        <input asp-for="CouponCode" class="form-control" />
+                        <span asp-validation-for="CouponCode" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="DiscountType" class="control-label"></label>
+                        <select asp-for="DiscountType"asp-items="Html.GetEnumSelectList<DiscountType>()" class="form-control"></select>
+                        <span asp-validation-for="DiscountType" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Discount" class="control-label"></label>
+                        <input asp-for="Discount" class="form-control" />
+                        <span asp-validation-for="Discount" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ExpireDate" class="control-label"></label>
+                        <input asp-for="ExpireDate" class="form-control" />
+                        <span asp-validation-for="ExpireDate" class="text-danger"></span>
+                    </div>
+                  
+                    <div class="form-group">
+                        <label asp-for="CouponType" class="control-label"></label>
+                        <select onchange="ChangeData(this)" asp-for="CouponType"asp-items="Html.GetEnumSelectList<CouponType>()" class="form-control">
+                        
+                        </select>
+                        <span asp-validation-for="CouponType" class="text-danger"></span>
+                    </div>
+                  
+                    <div class="form-group " style="display: none" id="MainSectionsDiv">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label asp-for="MainSectionsId" class="control-label"></label>
+                            </div>
+                            <div class="col-md-9">
+                                <select asp-for="MainSectionsId" class ="form-control select2" asp-items="ViewBag.MainSectionId" multiple>
+                                    <option value="">اختر الاقسام </option>
+                                </select>
+                                <span asp-validation-for="MainSectionsId" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group " style="display: none" id="ProvidersDiv" >
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label asp-for="ProvidersId" class="control-label"></label>
+                            </div>
+                            <div class="col-md-9">
+                                <select asp-for="ProvidersId" class ="form-control select2" asp-items="ViewBag.UserId" multiple>
+                                    <option value="">اختر  مقدمي الخدمات</option>
+                                </select>
+                                <span asp-validation-for="ProvidersId" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group " style="display: none" id="ServicesDiv" >
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label asp-for="ServicesId" class="control-label"></label>
+                            </div>
+                            <div class="col-md-9">
+                                <select asp-for="ServicesId" class ="form-control select2" asp-items="ViewBag.Services" multiple>
+                                    <option value="">اختر  الخدمات</option>
+                                </select>
+                                <span asp-validation-for="ServicesId" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group mb-0 row justify-content-end">
+                        <div class="col-md-9 float-end">
+                            <input type="submit" value="أنشاء" class="btn btn-primary waves-effect waves-light">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div style="margin-bottom: 4rem; text-align: end;">
+    <a asp-action="Index"class="btn btn-secondary">العودة للقائمة</a>
+</div>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+                tinymce.init({
+                    selector: "textarea",
+                     branding: false,
+                    promotion: false,
+                     statusbar: false
+                });
+    </script>
+  
+    <script>
+
+        function ChangeData(data)
+        {
+            var e = data.value; 
+                console.log(e);
+                  if (e==0) {
+                $('#MainSectionsDiv').hide();
+                        $('#ProvidersDiv').hide();
+                           $('#ServicesDiv').hide();
+            }
+            if (e==1)
+            {
+              
+                     $('#MainSectionsDiv').show();
+                        $('#ProvidersDiv').hide();
+                           $('#ServicesDiv').hide();
+            }
+            else if (e==3)
+            {
+                 $('#MainSectionsDiv').hide();
+                        $('#ProvidersDiv').hide();
+                           $('#ServicesDiv').show();
+            }
+            else if (e==2)
+            {
+                  $('#MainSectionsDiv').hide();
+                        $('#ProvidersDiv').show();
+                           $('#ServicesDiv').hide();
+            }
+            else {
+                $('#MainSectionsDiv').hide();
+                        $('#ProvidersDiv').hide();
+                           $('#ServicesDiv').hide();
+            }
+        
+           
+        }
+
+     
+    
+    
+    </script>
+
+
+}

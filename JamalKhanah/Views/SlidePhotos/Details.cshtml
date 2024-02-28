@@ -1,0 +1,56 @@
+﻿@model SlidePhoto
+
+@{
+    ViewData["Title"] = "تفاصيل الصورة ";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+<div class="row">						
+    <div class="col-xl-8">
+        <div class="card m-b-20">
+            <div class="card-header">
+                <h3 class="card-title">تفاصيل عن الصورة </h3>
+            </div>
+            <div class="card-body mb-0">
+                <dl class="row">
+                 
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.TitleAr)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.TitleAr)
+                    </dd>
+                    <dt class="col-sm-2">
+                        تاريخ الانشاء 
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.CreatedAt)
+                    </dd>
+                    <dt class = "col-sm-4">
+                        @Html.DisplayNameFor(model => model.ImgUrl)
+                    </dt>
+                    <dd class = "col-sm-10">
+                        @if (@Model.ImgUrl!=null)
+                        {
+                            <img src="@Model.ImgUrl" class="avatar avatar-sm me-3 border-radius-lg" alt="License Photo"style="width: 24rem;height: 14rem;" >
+                        }
+                        else
+                        {
+                            <p>لا توجد صورة </p>
+                        }
+                    </dd>
+                </dl>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+        
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id"class="btn btn-warning">تعديل</a> 
+    <a asp-action="Index"  class="btn btn-secondary">العودة للقائمة</a>
+</div>
